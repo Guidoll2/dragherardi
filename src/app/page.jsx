@@ -9,7 +9,7 @@ function HomePage() {
           
           <h1 className="text-white text-3xl">Bienvenidos - Welcome</h1>
         
-        <p className="text-white mt-5 text-center">"Medicine is, for me, the committed and active care for health; work towards disease prevention; and during illness, in terms of health recovery."</p>
+        <p className="text-white mt-5 text-center">&apos; Medicine is, for me, the committed and active care for health; work towards disease prevention; and during illness, in terms of health recovery.&apos ;</p>
         
     </section>
   )
