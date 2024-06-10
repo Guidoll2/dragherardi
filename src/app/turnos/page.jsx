@@ -5,7 +5,7 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import { userSchema } from '../../validations/userSchema';
 
 
-function turnos () {
+function Turnos () {
     const {register, handleSubmit, watch, formState: {errors}} = useForm ({
         resolver: zodResolver(userSchema)
     })
@@ -64,4 +64,4 @@ function turnos () {
     )
 }
 
-export default turnos;
+export default Turnos;
