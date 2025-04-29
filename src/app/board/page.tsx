@@ -58,7 +58,7 @@ export default function PostsPage() {
       <Header />
       <div className="max-w-xl mx-auto mt-4 p-4 min-h-screen bg-[#2d2d2d] border-8 border-[#1f1f1f] rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)] relative">
         <h1 className="text-3xl font-handwriting text-white text-center mb-6">
-          🧠 Comparte tus ideas
+          🧠 Comparte tus ideas o pensamientos
         </h1>
 
         <SignedIn>
