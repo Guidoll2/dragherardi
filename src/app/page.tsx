@@ -50,8 +50,9 @@ export default function Home() {
       titleES: "Coaching en Salud",
       titleEN: "Health Coaching",
       descES:
-        "Si hay algo que quisieras entender de te salud o el cuerpo humano no dudes en contactarme.",
-      descEN: "If you are in need of health assistance please reach me.",
+        "Si hay algo que quisieras entender de tu salud o el cuerpo humano no dudes en contactarme.",
+      descEN:
+        "If you want to undesertand something about your health or the human body please reach me.",
       ctaES: "Reservar",
       ctaEN: "Book now",
     },
