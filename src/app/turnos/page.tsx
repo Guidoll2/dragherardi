@@ -30,7 +30,7 @@ function Turnos() {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-gradient-to-b from-purple-200">
       {/* Selector de idioma */}
       <div
         id="language"
@@ -62,13 +62,13 @@ function Turnos() {
         <div className="px-8 py-10 md:px-12 text-center">
           <h1 className="text-4xl text-emerald-500 tracking-tight leading-tight">
             {language === "ES"
-              ? "Acompañamiento Médico Remoto"
+              ? "Consulta Médica Remota"
               : "Remote Medical Appointment"}
           </h1>
           <p className="mt-4 text-lg text-gray-700">
             {language === "ES"
-              ? "Selecciona un día y horario disponible para continuar con tu consulta médica."
-              : "Choose an available day and time to proceed with your medical consultation."}
+              ? "Selecciona un día y horario disponible para continuar."
+              : "Choose an available day and time to proceed."}
           </p>
         </div>
         <div className="absolute inset-0 -z-10 blur-xl bg-gradient-to-br from-emerald-300 via-emerald-400 to-emerald-500 opacity-20"></div>

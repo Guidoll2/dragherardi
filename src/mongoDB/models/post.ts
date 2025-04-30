@@ -14,7 +14,6 @@ const PostSchema: Schema = new Schema({
     type: String,
     required: true,
     trim: true,
-    maxlength: 280,
   },
   createdAt: {
     type: Date,

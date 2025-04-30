@@ -185,7 +185,7 @@ export default function Home() {
               <motion.a
                 className="block bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition"
                 variants={{
-                  hidden: { opacity: 0, y: 30 },
+                  hidden: { opacity: 0 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
                 }}
               >
