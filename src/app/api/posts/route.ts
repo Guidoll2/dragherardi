@@ -41,6 +41,7 @@ export async function GET() {
     const posts = await Post.find().sort({ createdAt: -1 });
     return NextResponse.json(posts, { status: 200 });
   } catch (error) {
+    console.error("Error al obtener los posts:", error); // <-- Agregado para usar 'error'
     return NextResponse.json(
       { error: "Error al obtener los posts." },
       { status: 500 }

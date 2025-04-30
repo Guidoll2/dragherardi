@@ -1,5 +1,5 @@
 // src/app/api/appointments/route.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import db from "@/mongoDB/db";
 import Appointment from "@/mongoDB/models/appointment";
 
