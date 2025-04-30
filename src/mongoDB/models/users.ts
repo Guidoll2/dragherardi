@@ -7,7 +7,7 @@ interface IUser extends Document {
   firstName?: string;
   lastName?: string;
   imageUrl?: string;
-  professionalId: { type: String };
+  professionalId: string;
   role?: "admin" | "user";
 }
 

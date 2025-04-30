@@ -14,7 +14,7 @@ interface ResearchItem {
   title: TranslatableText;
   summary: TranslatableText;
   details: TranslatableText;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
 export default function ResearchPage() {
