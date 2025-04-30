@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [hover, setHover] = useState(false);
-  const [language, setLanguage] = useState("ES");
+  const [language, setLanguage] = useState("EN");
 
   // Animation variants
   const stagger = {
