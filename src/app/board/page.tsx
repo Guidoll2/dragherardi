@@ -4,9 +4,17 @@ import { useEffect, useState } from "react";
 import Header from "@/app/components/header";
 import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/nextjs";
 
+type Post = {
+  content: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  createdAt: string;
+};
+
 export default function PostsPage() {
   const [postText, setPostText] = useState("");
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const { user } = useUser();
 
   useEffect(() => {

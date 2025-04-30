@@ -5,7 +5,7 @@ import Appointment from "@/mongoDB/models/appointment";
 
 const PROFESSIONAL_ID = process.env.CLERK_DOCTOR_ID;
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   if (!PROFESSIONAL_ID) {
     return NextResponse.json(
       { error: "No configured professional." },

@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import db from "../../../../mongoDB/db";
 import User from "@/mongoDB/models/users";
 
+interface UserUpdateData {
+  clerkUserId: string;
+  imageUrl: string;
+  firstName: string;
+  lastName: string;
+  email: string | null;
+  phoneNumber: string | null;
+}
+
 export async function POST(req: NextRequest) {
   try {
     await db();
@@ -29,13 +38,13 @@ export async function POST(req: NextRequest) {
         console.log("Email extraído:", email);
         console.log("Número de celular extraído:", phoneNumber);
 
-        const userUpdateData: any = {
+        const userUpdateData: UserUpdateData = {
           clerkUserId: id,
           imageUrl: profile_image_url,
           firstName: first_name,
           lastName: last_name,
-          email: email || null,
-          phoneNumber: phoneNumber || null,
+          email: email,
+          phoneNumber: phoneNumber,
         };
 
         console.log("Datos a actualizar:", userUpdateData);

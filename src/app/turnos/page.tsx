@@ -7,7 +7,6 @@ import CalendarComponent from "../components/calendar";
 import {
   SignedIn,
   SignedOut,
-  SignIn,
   SignInButton,
   SignOutButton,
 } from "@clerk/nextjs";
