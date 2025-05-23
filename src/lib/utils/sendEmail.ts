@@ -9,6 +9,28 @@ interface EmailOptions {
   html?: string; // Optional HTML content
 }
 
+// Define an interface for Nodemailer-specific errors, extending the standard Error interface.
+interface NodemailerError extends Error {
+  code?: string;
+  response?: string;
+  responseCode?: number; // Nodemailer might also include a responseCode
+}
+
+/**
+ * Type guard to check if an unknown error is a NodemailerError.
+ * This allows safe access to Nodemailer-specific properties like 'code' and 'response'.
+ * @param error The unknown error to check.
+ * @returns True if the error is a NodemailerError, false otherwise.
+ */
+function isNodemailerError(error: unknown): error is NodemailerError {
+  return (
+    error instanceof Error &&
+    (typeof (error as NodemailerError).code === 'string' ||
+     typeof (error as NodemailerError).response === 'string' ||
+     typeof (error as NodemailerError).responseCode === 'number')
+  );
+}
+
 /**
  * Envía un correo electrónico utilizando Nodemailer.
  *
@@ -39,25 +61,27 @@ const sendEmail = async (options: EmailOptions) => {
   try {
     await transporter.sendMail(mailOptions);
     console.log("Correo enviado con éxito");
-  } catch (error: unknown) { // Cambiado de 'any' a 'unknown'
+  } catch (error: unknown) { // 'error' is now of type 'unknown'
     console.error("Error al enviar el correo:");
 
-    // Verifica si el error es una instancia de Error para acceder a sus propiedades
-    if (error instanceof Error) {
+    // Use the type guard to safely narrow the type of 'error'
+    if (isNodemailerError(error)) {
       console.error("Mensaje de error:", error.message);
-      // Nodemailer puede añadir propiedades específicas al error, como 'code' o 'response'
-      // Para acceder a ellas de forma segura, puedes castear a 'any' solo para la depuración
-      // o definir una interfaz más específica para los errores de Nodemailer si los conoces bien.
-      const nodemailerError = error as any; // Casteo temporal para acceder a propiedades no estándar
-      if (nodemailerError.code) {
-        console.error("Código de error:", nodemailerError.code);
+      if (error.code) {
+        console.error("Código de error:", error.code);
       }
-      if (nodemailerError.response) {
-        console.error("Detalles de la respuesta:", nodemailerError.response);
+      if (error.response) {
+        console.error("Detalles de la respuesta:", error.response);
       }
+      if (error.responseCode) {
+        console.error("Código de respuesta:", error.responseCode);
+      }
+    } else if (error instanceof Error) {
+      // Handle other standard Error instances
+      console.error("Mensaje de error (Error estándar):", error.message);
     } else {
-      // Si el error no es una instancia de Error, imprímelo tal cual
-      console.error("Error desconocido:", error);
+      // Handle truly unknown errors
+      console.error("Error desconocido (no es una instancia de Error):", error);
     }
     throw new Error("Error enviando el correo");
   }
