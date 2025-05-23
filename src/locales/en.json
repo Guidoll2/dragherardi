@@ -1,0 +1,44 @@
+
+{
+  "calendar": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "today": "Today",
+    "select_date": "Select a date to view available appointments.",
+    "of": "of",
+    "no_appointments": "No appointments available for this date.",
+    "blocked": "Blocked",
+    "reserved": "Reserved",
+    "available": "Available",
+    "reserve_button": "Book Appointment",
+    "enable_slots": "Enable Time Slots",
+    "past": "Past"
+  },
+  "messages": {
+    "reservation_success": "Appointment booked successfully!",
+    "reservation_error": "Error booking appointment: {error}",
+    "enable_success": "Time slots enabled successfully.",
+    "enable_error": "Error enabling time slots: {error}",
+    "no_authentication": "Not authenticated. Please log in.",
+    "user_not_found": "User not found.",
+    "not_authorized": "Not authorized. You don't have permission to perform this action.",
+    "incomplete_data": "Incomplete data. Make sure to select a date and time slots.",
+    "select_date_first": "Please select a day on the calendar first.",
+    "confirm_reservation": "Are you sure you want to book the appointment for {date} at {time}?",
+    "appointment_not_available": "Appointment not available or already booked/blocked.",
+    "internal_server_error": "Internal server error."
+  },
+  "email": {
+    "professional_subject": "New Appointment Booked",
+    "professional_text_details": "A new appointment has been booked.\n\nAppointment Details:\nDate: {date}\nTime: {time}\n\nReservant Information:\nName: {firstName} {lastName}\nEmail: {email}\nClerk ID: {clerkId}",
+    "professional_html_details": "<p>A new appointment has been booked.</p><p><strong>Appointment Details:</strong></p><ul><li><strong>Date:</strong> {date}</li><li><strong>Time:</strong> {time}</li></ul><p><strong>Reservant Information:</strong></p><ul><li><strong>Name:</strong> {firstName} {lastName}</li><li><strong>Email:</strong> {email}</li><li><strong>Clerk ID:</strong> {clerkId}</li></ul>",
+    "user_subject": "Your Appointment Confirmation",
+    "user_text_confirmation": "Hi {firstName}!\n\nYour appointment has been successfully confirmed.\n\nYour Reservation Details:\nDate: {date}\nTime: {time}\n\nWe look forward to seeing you!",
+    "user_html_confirmation": "<p>Hi {firstName}!</p><p>Your appointment has been successfully confirmed.</p><p><strong>Your Reservation Details:</strong></p><ul><li><strong>Date:</strong> {date}</li><li><strong>Time:</strong> {time}</li></ul><p>We look forward to seeing you!</p>"
+  }
+}

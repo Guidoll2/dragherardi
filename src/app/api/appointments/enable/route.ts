@@ -1,87 +1,77 @@
-// src/app/api/appointments/enable/route.ts
-import { NextRequest, NextResponse } from "next/server";
-import db from "@/mongoDB/db";
-import Appointment from "@/mongoDB/models/appointment";
-import User from "@/mongoDB/models/users"; // Importar el modelo de usuarios
-import { auth } from "@clerk/nextjs/server";
+  // src/app/api/appointments/enable/route.ts
+  import { NextRequest, NextResponse } from "next/server";
+  import db from "@/mongoDB/db";
+  import Appointment from "@/mongoDB/models/appointment";
+  import User from "@/mongoDB/models/users";
+  import { auth } from "@clerk/nextjs/server";
 
-const PROFESSIONAL_ID = process.env.CLERK_DOCTOR_ID;
+  // Remove or comment out the PROFESSIONAL_ID constant at the top
+  // const PROFESSIONAL_ID = process.env.CLERK_DOCTOR_ID;
 
-export async function POST(req: NextRequest) {
-  if (!PROFESSIONAL_ID) {
-    return NextResponse.json(
-      { error: "No configured professional." },
-      { status: 500 }
-    );
-  }
-
-  // 1) Auth
-  const { userId } = await auth(); // auth() lleva await
-  if (!userId) {
-    return NextResponse.json({ error: "No autenticado." }, { status: 401 });
-  }
-
-  // 2) Conectar a la base de datos y buscar el rol del usuario
-  try {
-    await db(); // Asegurarse de que la base de datos esté conectada
-
-    const user = await User.findOne({ clerkUserId: userId }); // Buscar el usuario en la base de datos
-    if (!user) {
-      return NextResponse.json(
-        { error: "Usuario no encontrado." },
-        { status: 404 }
-      );
+  export async function POST(req: NextRequest) {
+    // Option 1: If you want to use the admin's own ID as the professionalId
+    const { userId: adminClerkId } = await auth(); // Get the admin's Clerk ID
+    if (!adminClerkId) {
+      return NextResponse.json({ error: "No autenticado." }, { status: 401 });
     }
 
-    console.log("Rol del usuario desde la base de datos:", user.role); // Log para depuración
+    // 2) Conectar a la base de datos y buscar el rol del usuario
+    try {
+      await db();
 
-    if (!user.role || user.role.toLowerCase() !== "admin") {
-      return NextResponse.json({ error: "No autorizado." }, { status: 403 });
-    }
-  } catch (err) {
-    console.error("Error al verificar el rol del usuario:", err);
-    return NextResponse.json(
-      { error: "Error interno del servidor." },
-      { status: 500 }
-    );
-  }
+      const user = await User.findOne({ clerkUserId: adminClerkId }); // Use adminClerkId
+      if (!user) {
+        return NextResponse.json(
+          { error: "Usuario no encontrado." },
+          { status: 404 }
+        );
+      }
 
-  // 3) Lógica de habilitar turnos
-  try {
-    const { date, timeSlots } = await req.json();
-    if (!date || !Array.isArray(timeSlots)) {
-      return NextResponse.json(
-        { error: "Datos incompletos." },
-        { status: 400 }
-      );
-    }
+      console.log("Rol del usuario desde la base de datos:", user.role);
 
-    const appointmentDate = new Date(date);
-    const createdSlots = [];
+      if (!user.role || user.role.toLowerCase() !== "admin") {
+        return NextResponse.json({ error: "No autorizado." }, { status: 403 });
+      }
 
-    for (const slot of timeSlots) {
-      const exists = await Appointment.findOne({
-        date: appointmentDate,
-        timeSlot: slot,
-        professionalId: PROFESSIONAL_ID,
-      });
-      if (!exists) {
-        const newAppt = await Appointment.create({
+      // Now, let's determine the professionalId for the new appointments.
+      // You could use the admin's Clerk ID as the professional ID for the newly enabled slots.
+      const professionalIdForNewSlots = adminClerkId; // Use the admin's Clerk ID
+
+      // 3) Lógica de habilitar turnos
+      const { date, timeSlots } = await req.json();
+      if (!date || !Array.isArray(timeSlots)) {
+        return NextResponse.json(
+          { error: "Datos incompletos." },
+          { status: 400 }
+        );
+      }
+
+      const appointmentDate = new Date(date);
+      const createdSlots = [];
+
+      for (const slot of timeSlots) {
+        const exists = await Appointment.findOne({
           date: appointmentDate,
           timeSlot: slot,
-          professionalId: PROFESSIONAL_ID,
-          isBlocked: false,
+          professionalId: professionalIdForNewSlots, // Use the dynamically determined ID
         });
-        createdSlots.push(newAppt);
+        if (!exists) {
+          const newAppt = await Appointment.create({
+            date: appointmentDate,
+            timeSlot: slot,
+            professionalId: professionalIdForNewSlots, // Use the dynamically determined ID
+            isBlocked: false,
+          });
+          createdSlots.push(newAppt);
+        }
       }
-    }
 
-    return NextResponse.json({ success: true, createdSlots });
-  } catch (err) {
-    console.error("Error habilitando turnos:", err);
-    return NextResponse.json(
-      { error: "Error interno del servidor." },
-      { status: 500 }
-    );
+      return NextResponse.json({ success: true, createdSlots });
+    } catch (err) {
+      console.error("Error al verificar el rol del usuario o habilitar turnos:", err);
+      return NextResponse.json(
+        { error: "Error interno del servidor." },
+        { status: 500 }
+      );
+    }
   }
-}

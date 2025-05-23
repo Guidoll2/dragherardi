@@ -39,14 +39,14 @@ export default function ResearchPage() {
   const texts: { [key: string]: TranslatableText } = {
     sectionTitle: { ES: "Investigación", EN: "Research" },
     subtitle: {
-      ES: "Aquí va el subtítulo...",
-      EN: "Subtitle goes here...",
+      ES: "Proyectos en curso supervisados por la profesora Rachel Morello-Frosch",
+      EN: "Ongoing projects supervised by Professor Rachel Morello-Frosch.",
     },
     detailsLabel: { ES: "Detalles", EN: "Details" },
     hideLabel: { ES: "Ocultar detalles", EN: "Hide Details" },
     fullName: {
-      ES: "Candelaria Gherardi Arbizu",
-      EN: "Candelaria Gherardi Arbizu",
+      ES: "Investigación Actual",
+      EN: "Current Research",
     },
   };
 

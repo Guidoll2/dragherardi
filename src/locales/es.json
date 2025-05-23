@@ -1,0 +1,43 @@
+{
+  "calendar": {
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo",
+    "today": "Hoy",
+    "select_date": "Selecciona una fecha para ver los turnos disponibles.",
+    "of": "de",
+    "no_appointments": "No hay turnos disponibles para esta fecha.",
+    "blocked": "Bloqueado",
+    "reserved": "Reservado",
+    "available": "Disponible",
+    "reserve_button": "Reservar Turno",
+    "enable_slots": "Habilitar Horarios",
+    "past": "Pasado"
+  },
+  "messages": {
+    "reservation_success": "¡Turno reservado con éxito!",
+    "reservation_error": "Error al reservar el turno: {error}",
+    "enable_success": "Horarios habilitados con éxito.",
+    "enable_error": "Error al habilitar horarios: {error}",
+    "no_authentication": "No autenticado. Por favor, inicia sesión.",
+    "user_not_found": "Usuario no encontrado.",
+    "not_authorized": "No autorizado. No tienes permiso para realizar esta acción.",
+    "incomplete_data": "Datos incompletos. Asegúrate de seleccionar una fecha y horarios.",
+    "select_date_first": "Por favor, selecciona un día en el calendario primero.",
+    "confirm_reservation": "¿Estás seguro de que quieres reservar el turno para el {date} a las {time}?",
+    "appointment_not_available": "Turno no disponible o ya reservado/bloqueado.",
+    "internal_server_error": "Error interno del servidor."
+  },
+  "email": {
+    "professional_subject": "Nuevo turno reservado",
+    "professional_text_details": "Se ha reservado un nuevo turno.\n\nDetalles del turno:\nFecha: {date}\nHora: {time}\n\nInformación del reservante:\nNombre: {firstName} {lastName}\nEmail: {email}\nID de Clerk: {clerkId}",
+    "professional_html_details": "<p>Se ha reservado un nuevo turno.</p><p><strong>Detalles del turno:</strong></p><ul><li><strong>Fecha:</strong> {date}</li><li><strong>Hora:</strong> {time}</li></ul><p><strong>Información del reservante:</strong></p><ul><li><strong>Nombre:</strong> {firstName} {lastName}</li><li><strong>Email:</strong> {email}</li><li><strong>ID de Clerk:</strong> {clerkId}</li></ul>",
+    "user_subject": "Confirmación de tu turno",
+    "user_text_confirmation": "¡Hola {firstName}!\n\nTu turno ha sido confirmado con éxito.\n\nDetalles de tu reserva:\nFecha: {date}\nHora: {time}\n\n¡Te esperamos!",
+    "user_html_confirmation": "<p>¡Hola {firstName}!</p><p>Tu turno ha sido confirmado con éxito.</p><p><strong>Detalles de tu reserva:</strong></p><ul><li><strong>Fecha:</strong> {date}</li><li><strong>Hora:</strong> {time}</li></ul><p>¡Te esperamos!</p>"
+  }
+}

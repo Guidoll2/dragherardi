@@ -10,10 +10,10 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true,         // Correctly placed here
     "module": "esnext",
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true,       // Correctly placed here
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
@@ -26,14 +26,18 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "baseUrl": "." // <-- Make sure you also have this line for "@/ imports"
   },
+
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+     "**/*.d.ts" ,
     ".next/types/**/*.ts",
-    "next.config.mjs"
+    "next.config.mjs",
+    "src/types/**/*.d.ts" 
   ],
   "exclude": [
     "node_modules"

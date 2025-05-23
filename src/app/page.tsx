@@ -52,7 +52,7 @@ export default function Home() {
       descES:
         "Si hay algo que quisieras entender de tu salud o el cuerpo humano no dudes en contactarme.",
       descEN:
-        "If you want to undesertand something about your health or the human body please reach me.",
+        "If you need to understand something about your health or the human body please reach me.",
       ctaES: "Reservar",
       ctaEN: "Book now",
     },

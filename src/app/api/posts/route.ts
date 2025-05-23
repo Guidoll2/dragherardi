@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/mongoDB/db";
 import Post from "@/mongoDB/models/post";
+import { NextRequest } from "next/server";
 
 export async function POST(req: Request) {
   await dbConnect();
@@ -46,5 +47,36 @@ export async function GET() {
       { error: "Error al obtener los posts." },
       { status: 500 }
     );
+  }
+}
+
+export async function PATCH(req: NextRequest) {
+  await dbConnect();
+  try {
+    const { id, content, userId } = await req.json();
+    const post = await Post.findById(id);
+    if (!post) return NextResponse.json({ error: "Post no encontrado." }, { status: 404 });
+    if (post.userId !== userId) return NextResponse.json({ error: "No autorizado." }, { status: 403 });
+
+    post.content = content;
+    await post.save();
+    return NextResponse.json(post, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: "Error al editar el post." }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  await dbConnect();
+  try {
+    const { id, userId } = await req.json();
+    const post = await Post.findById(id);
+    if (!post) return NextResponse.json({ error: "Post no encontrado." }, { status: 404 });
+    if (post.userId !== userId) return NextResponse.json({ error: "No autorizado." }, { status: 403 });
+
+    await post.deleteOne();
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: "Error al borrar el post." }, { status: 500 });
   }
 }
