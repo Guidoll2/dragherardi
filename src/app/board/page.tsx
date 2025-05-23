@@ -91,7 +91,7 @@ export default function PostsPage() {
         const error = await res.json();
         toast.error("Error: " + error.error);
       }
-    } catch (error) {
+    } catch  {
       toast.dismiss();
       toast.error("Error de red.");
     }

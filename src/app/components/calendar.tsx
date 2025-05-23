@@ -6,7 +6,6 @@ import {
   startOfMonth,
   endOfMonth,
   eachDayOfInterval,
-  isSameMonth,
   isToday,
   isPast,
   getDay,
@@ -281,7 +280,7 @@ const getSlotStatus = (timeSlot: string) => {
   const isDayToday = isToday(day);
   const isDaySelected = selectedDay && format(day, 'yyyy-MM-dd') === format(selectedDay, 'yyyy-MM-dd');
   const isPastDay = isPast(day) && !isDayToday; // Correctly determine if a day is in the past, excluding today.
-  const isFutureDay = !isPastDay && !isDayToday; // New variable to check if it's a future day.
+ 
 
   return (
     <button

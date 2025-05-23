@@ -62,8 +62,9 @@ export async function PATCH(req: NextRequest) {
     await post.save();
     return NextResponse.json(post, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "Error al editar el post." }, { status: 500 });
-  }
+  console.error("Error al editar el post:", error);
+  return NextResponse.json({ error: "Error al editar el post." }, { status: 500 });
+}
 }
 
 export async function DELETE(req: NextRequest) {
@@ -77,6 +78,7 @@ export async function DELETE(req: NextRequest) {
     await post.deleteOne();
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "Error al borrar el post." }, { status: 500 });
-  }
+  console.error("Error al borrar el post:", error);
+  return NextResponse.json({ error: "Error al borrar el post." }, { status: 500 });
+}
 }
