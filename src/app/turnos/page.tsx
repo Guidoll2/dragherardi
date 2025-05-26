@@ -13,6 +13,7 @@ import {
 function Turnos() {
   const [hover, setHover] = useState(false);
   const [languageFromCookie, setLanguageFromCookie] = useState("EN"); // Renombramos para claridad
+    const [language] = useState<"ES" | "EN">("ES");
 
   // Carga el idioma guardado en cookie al montar
   useEffect(() => {
@@ -60,7 +61,7 @@ function Turnos() {
         </p>
       </div>
 
-      <Header />
+   <Header language={language} onLanguageChange={handleLanguageChange} />
 
       <div className="relative mt-12 w-full  overflow-hidden p-8 sm:p-10 flex flex-col items-start text-start">
         {/* Contenido principal: Título y descripción con foco en la cercanía */}

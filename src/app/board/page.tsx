@@ -163,7 +163,7 @@ export default function PostsPage() {
 >
     {/* Overlay oscuro para resaltar el board */}
     <div className="absolute z-[100] bg-black/40" />
-    <Header />
+   <Header language={language} onLanguageChange={handleLanguageChange} />
 
     {/* Botón de idioma */}
 <div className="absolute top-16 left-8 z-20">

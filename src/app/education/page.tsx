@@ -91,7 +91,7 @@ export default function ResearchPage() {
 
   return (
     <main className="min-h-screen bg-[#D5E8D4] text-[#5D8D7C] font-sans">
-      <Header></Header>
+         <Header language={language} onLanguageChange={handleLanguageChange} />
       {/* Language Toggle */}
       <div className="sticky top-0 z-50 bg-[#D5E8D4] p-4 flex justify-end">
         <div
