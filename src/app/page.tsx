@@ -40,7 +40,7 @@ export default function Home() {
       descES:
         "Con raíces en salud pública, nutrida en medicina indígena Mapuche & desarrollada en UC Labs.",
       descEN:
-        "With roots in public health, nourished in native medicine perspective & developed on UC Labs.",
+        "With roots in public health, nourished in native Mapuche medicine perspective & developed on UC Labs.",
       ctaES: "Ver más",
       ctaEN: "Learn more",
     },
@@ -50,9 +50,9 @@ export default function Home() {
       titleES: "Reuniones remotas",
       titleEN: "Online Appointments",
       descES:
-        "Si hay algo que quisieras entender de tu salud o el cuerpo humano no dudes en contactarme.",
+        "Como investigadora en salud y medioambiente, me interesa colaborar con quienes necesiten orientación, quieran compartir ideas o conversar sobre temas relacionados. Podemos coordinar una reunión.",
       descEN:
-        "If you need to understand something about your health or the human body please reach me.",
+      "As a researcher in health and environmental science, I welcome the opportunity to connect with others seeking guidance, collaboration, or meaningful conversation. Feel free to schedule a meeting.",
       ctaES: "Reservar",
       ctaEN: "Book now",
     },
@@ -86,7 +86,7 @@ export default function Home() {
   return (
     <main className="bg-[#D5E8D4] text-[#5D8D7C] font-sans">
       <div className="sticky top-0 z-[100] w-full ">
-        <Header />
+        <Header language={language} onLanguageChange={handleLanguageChange} />
       </div>
 
       <div

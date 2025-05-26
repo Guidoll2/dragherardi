@@ -1,21 +1,29 @@
 import { UserButton } from "@clerk/nextjs";
-import { FaUserDoctor } from "react-icons/fa6";
 import Link from "next/link";
+import AnimatedIcon from "../components/animatedIcons"; // Asegúrate de ajustar la ruta según tu estructura de archivos
 
-function Header() {
+type HeaderProps = {
+  language: string;
+  onLanguageChange: () => void;
+};
+
+export default function Header({ language, onLanguageChange }: HeaderProps) {
   return (
-    <header className="flex flex-row p-2 bg-gray-100 justify-between z-[100]">
-      <Link href={"/"}>
-        <div className="mt-2 z-[100]">
-          <FaUserDoctor />
+    <header className="flex items-center justify-between p-4 bg-white shadow-sm">
+      <Link href="/">
+        <div className="flex items-center space-x-4">
+          <AnimatedIcon />
+          <div className="flex flex-col leading-tight ">
+            <span className="font-semibold text-gray-800 text-lg">C.Gherardi</span>
+            <span className="text-sm text-gray-500">
+              {language === "EN"
+                ? "Health & Environmental Professional"
+                : "Profesional de Salud y Medioambiente"}
+            </span>
+          </div>
         </div>
       </Link>
-
-      <div>
-        <UserButton />
-      </div>
+      <UserButton />
     </header>
   );
 }
-
-export default Header;
