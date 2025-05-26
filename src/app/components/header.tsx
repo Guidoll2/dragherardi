@@ -7,7 +7,7 @@ type HeaderProps = {
   onLanguageChange: () => void;
 };
 
-export default function Header({ language, onLanguageChange }: HeaderProps) {
+export default function Header({ language }: HeaderProps) {
   return (
     <header className="flex items-center justify-between p-4 bg-white shadow-sm">
       <Link href="/">
