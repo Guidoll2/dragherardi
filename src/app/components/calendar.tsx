@@ -46,7 +46,6 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
 
 const [showConfirmModal, setShowConfirmModal] = useState(false);
 const [confirmModalMessage, setConfirmModalMessage] = useState('');
-const [confirmAction, setConfirmAction] = useState<(() => void) | null>(null);
 const [slotToReserve, setSlotToReserve] = useState<string | null>(null); // Para guardar el slot temporalmente
 
 
