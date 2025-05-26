@@ -38,7 +38,7 @@
     ".next/types/**/*.ts",
     "next.config.mjs",
     "src/types/**/*.d.ts" 
-  ],
+, "src/app/components/confirmationModal.js"  ],
   "exclude": [
     "node_modules"
   ]

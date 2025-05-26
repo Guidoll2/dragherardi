@@ -47,8 +47,8 @@ export default function Home() {
     {
       href: "/turnos",
       img: "/turnos.webp",
-      titleES: "Coaching en Salud",
-      titleEN: "Health Coaching",
+      titleES: "Reuniones remotas",
+      titleEN: "Online Appointments",
       descES:
         "Si hay algo que quisieras entender de tu salud o el cuerpo humano no dudes en contactarme.",
       descEN:

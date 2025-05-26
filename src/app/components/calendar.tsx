@@ -17,6 +17,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useAuth } from '@clerk/nextjs';
 import useTranslations from '../components/useTranslations';
 import { toast } from 'sonner';
+import ConfirmationModal from './confirmationModal';
 
 interface Appointment {
   _id: string;
@@ -40,6 +41,50 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
   const [isAdmin, setIsAdmin] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
   const [selectedSlotsToEnable, setSelectedSlotsToEnable] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
+
+
+const [showConfirmModal, setShowConfirmModal] = useState(false);
+const [confirmModalMessage, setConfirmModalMessage] = useState('');
+const [confirmAction, setConfirmAction] = useState<(() => void) | null>(null);
+const [slotToReserve, setSlotToReserve] = useState<string | null>(null); // Para guardar el slot temporalmente
+
+
+const executeReservation = async () => {
+  if (!selectedDay || !slotToReserve) return; // Asegurarse que hay un día y slot seleccionado
+
+  setShowConfirmModal(false); // Oculta la modal
+
+  // Muestra un toast de carga mientras se procesa la solicitud
+  const reserveLoadingToastId = toast.loading(t('messages.reserving_slot_loading'));
+
+  try {
+    const res = await fetch("/api/appointments/reserve", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        date: selectedDay.toISOString(),
+        timeSlot: slotToReserve,
+        language: language,
+      }),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success(t('messages.reservation_success'), { id: reserveLoadingToastId });
+      const updatedAppointments = await fetch("/api/appointments", { credentials: "include" }).then((r) => r.json());
+      setAppointments(Array.isArray(updatedAppointments) ? updatedAppointments : []);
+    } else {
+      toast.error(t('messages.reservation_error', { error: data.error || 'unknown' }), { id: reserveLoadingToastId });
+    }
+  } catch (err) {
+    console.error("Error in executeReservation:", err);
+    toast.error(t('messages.reservation_error', { error: 'Internal server error' }), { id: reserveLoadingToastId });
+  } finally {
+    setSlotToReserve(null); // Limpia el slot temporal
+  }
+};
 
   const dateFnsLocale = useMemo(() => {
     return language === 'es' ? es : enUS;
@@ -113,13 +158,13 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
   }, [selectedDay, appointments]);
 
   // Modificación en getSlotStatus
-const getSlotStatus = (timeSlot: string) => {
-  const appt = selectedDayAppointments.find(a => a.timeSlot === timeSlot);
-  if (!appt) return 'unavailable'; // If no appt exists, it's unavailable (not enabled)
-  if (appt.isBlocked) return 'blocked';
-  if (appt.userId) return 'reserved'; // This is the key: if userId exists, it's reserved
-  return 'available'; // If exists and no userId/not blocked, it's available
-};
+  const getSlotStatus = (timeSlot: string) => {
+    const appt = selectedDayAppointments.find(a => a.timeSlot === timeSlot);
+    if (!appt) return 'unavailable'; // If no appt exists, it's unavailable (not enabled)
+    if (appt.isBlocked) return 'blocked';
+    if (appt.userId) return 'reserved'; // This is the key: if userId exists, it's reserved
+    return 'available'; // If exists and no userId/not blocked, it's available
+  };
 
   const handleDayClick = (day: Date) => {
     setSelectedDay(day);
@@ -142,80 +187,59 @@ const getSlotStatus = (timeSlot: string) => {
       return;
     }
 
-   try {
-    const res = await fetch("/api/appointments/enable", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        date: selectedDay.toISOString(),
-        timeSlots: selectedSlotsToEnable
-      }),
-    });
-    const data = await res.json();
+    setIsLoading(true); // Start loading
+    const loadingToastId = toast.loading(t('messages.enabling_slots_loading')); // Show loading toast
 
-    if (res.ok) {
-      toast.success(t('messages.enable_success'));
-      // **CRITICAL:** Ensure appointments state is updated with the latest data
-      const updatedAppointments = await fetch("/api/appointments", { credentials: "include" }).then((r) => r.json());
-      setAppointments(Array.isArray(updatedAppointments) ? updatedAppointments : []); // Ensure it's always an array
-      setSelectedSlotsToEnable([]);
-    } else {
-      toast.error(t('messages.enable_error', { error: data.error || 'unknown' }));
+    try {
+      const res = await fetch("/api/appointments/enable", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: selectedDay.toISOString(),
+          timeSlots: selectedSlotsToEnable
+        }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success(t('messages.enable_success'), { id: loadingToastId }); // Update loading toast to success
+        // **CRITICAL:** Ensure appointments state is updated with the latest data
+        const updatedAppointments = await fetch("/api/appointments", { credentials: "include" }).then((r) => r.json());
+        setAppointments(Array.isArray(updatedAppointments) ? updatedAppointments : []); // Ensure it's always an array
+        setSelectedSlotsToEnable([]);
+      } else {
+        toast.error(t('messages.enable_error', { error: data.error || 'unknown' }), { id: loadingToastId }); // Update loading toast to error
+      }
+    } catch (err) {
+      console.error("Error in handleEnableSlots:", err);
+      toast.error(t('messages.enable_error', { error: 'Internal server error' }), { id: loadingToastId }); // Update loading toast to error
+    } finally {
+      setIsLoading(false); // End loading
     }
-  } catch (err) {
-    console.error("Error in handleEnableSlots:", err);
-    toast.error(t('messages.enable_error', { error: 'Internal server error' }));
+  };
+
+const handleReserveAppointment = (slotTime: string) => {
+  if (!userId) {
+    toast.error(t('messages.no_authentication'));
+    return;
   }
+  if (!selectedDay) {
+    toast.error(t('messages.select_date_first'));
+    return;
+  }
+
+ setConfirmModalMessage(
+ 
+    t('messages.confirm_reservation', {
+      date: format(selectedDay, `d MMMM`, { locale: dateFnsLocale }), // This will correctly format as "27 de mayo" or "27 May"
+      time: slotTime,
+    })
+  );
+  setSlotToReserve(slotTime); // Guarda el slot
+  setShowConfirmModal(true);  // Abre el modal de confirmación
 };
 
-  const handleReserveAppointment = async (slotTime: string) => {
-    if (!userId) {
-      toast.error(t('messages.no_authentication'));
-      return;
-    }
-    if (!selectedDay) {
-      toast.error(t('messages.select_date_first'));
-      return;
-    }
-
-    const confirmReservation = confirm(
-      t('messages.confirm_reservation', {
-        date: format(selectedDay, `d ' ${t('calendar.of')} ' MMMM`, { locale: dateFnsLocale }),
-        time: slotTime,
-      })
-    );
-
-    if (!confirmReservation) {
-      return;
-    }
-
-  try {
-    const res = await fetch("/api/appointments/reserve", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        date: selectedDay.toISOString(),
-        timeSlot: slotTime,
-        language: language,
-      }),
-    });
-    const data = await res.json();
-
-    if (res.ok) {
-      toast.success(t('messages.reservation_success'));
-      // **CRITICAL:** Ensure appointments state is updated with the latest data
-      const updatedAppointments = await fetch("/api/appointments", { credentials: "include" }).then((r) => r.json());
-      setAppointments(Array.isArray(updatedAppointments) ? updatedAppointments : []); // Ensure it's always an array
-    } else {
-      toast.error(t('messages.reservation_error', { error: data.error || 'unknown' }));
-    }
-  } catch (err) {
-    console.error("Error in handleReserveAppointment:", err);
-    toast.error(t('messages.reservation_error', { error: 'Internal server error' }));
-  }
-};
 
   // NUEVA LÓGICA: `visibleTimeSlots` para admin y user normal
   const visibleTimeSlots = useMemo(() => {
@@ -244,9 +268,9 @@ const getSlotStatus = (timeSlot: string) => {
             <FaChevronLeft className="h-5 w-5" />
           </button>
           <h2 className="text-2xl font-bold text-gray-600">
-  {format(currentMonth, "MMMM yyyy", { locale: dateFnsLocale })
-    .replace(/^\w/, c => c.toUpperCase())}
-</h2>
+            {format(currentMonth, "MMMM", { locale: dateFnsLocale })
+              .replace(/^\w/, c => c.toUpperCase())}
+          </h2>
           <button
             aria-label="Next month"
             onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
@@ -273,54 +297,54 @@ const getSlotStatus = (timeSlot: string) => {
           ))}
 
           {/* Modificación en el mapeo de días del calendario */}
-         {daysInMonth.map((day) => {
-  const hasSlots = appointments.some(
-    (a) => format(new Date(a.date), 'yyyy-MM-dd') === format(day, 'yyyy-MM-dd')
-  );
-  const isDayToday = isToday(day);
-  const isDaySelected = selectedDay && format(day, 'yyyy-MM-dd') === format(selectedDay, 'yyyy-MM-dd');
-  const isPastDay = isPast(day) && !isDayToday; // Correctly determine if a day is in the past, excluding today.
- 
+          {daysInMonth.map((day) => {
+            const hasSlots = appointments.some(
+              (a) => format(new Date(a.date), 'yyyy-MM-dd') === format(day, 'yyyy-MM-dd')
+            );
+            const isDayToday = isToday(day);
+            const isDaySelected = selectedDay && format(day, 'yyyy-MM-dd') === format(selectedDay, 'yyyy-MM-dd');
+            const isPastDay = isPast(day) && !isDayToday; // Correctly determine if a day is in the past, excluding today.
 
-  return (
-    <button
-      key={day.toISOString()}
-      onClick={() => handleDayClick(day)}
-      disabled={!isAdmin && (isPastDay || !hasSlots)} // Keep this for non-admins
-      className={`flex flex-col items-center justify-center h-16 w-full rounded-lg transition-all duration-200
-        ${isDaySelected
-          ? "bg-blue-600 text-white shadow-lg transform scale-105"
-          : isDayToday
-          ? "bg-blue-200 text-blue-800 font-bold"
-          : hasSlots
-          ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
-          : "bg-white text-gray-700 hover:bg-gray-50"}
-        ${(!isAdmin && (isPastDay || !hasSlots)) || (isAdmin && isPastDay) ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} // Admin cannot select past days
-        ${isAdmin ? "border border-dashed border-gray-300" : ""}
-      `}
-    >
-      <span className="text-lg font-medium">{format(day, "d")}</span>
-      {hasSlots && !isDaySelected && (
-        <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1"></span>
-      )}
-      {isDayToday && (
-        <span className="text-[0.6rem] font-semibold text-blue-600">
-          {t('calendar.today')}
-        </span>
-      )}
-    </button>
-  );
-})}
+
+            return (
+              <button
+                key={day.toISOString()}
+                onClick={() => handleDayClick(day)}
+                disabled={!isAdmin && (isPastDay || !hasSlots)} // Keep this for non-admins
+                className={`flex flex-col items-center justify-center h-16 w-full rounded-lg transition-all duration-200
+                  ${isDaySelected
+                    ? "bg-blue-600 text-white shadow-lg transform scale-105"
+                    : isDayToday
+                      ? "bg-blue-200 text-blue-800 font-bold"
+                      : hasSlots
+                        ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
+                        : "bg-white text-gray-700 hover:bg-gray-50"}
+                  ${(!isAdmin && (isPastDay || !hasSlots)) || (isAdmin && isPastDay) ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} // Admin cannot select past days
+                  ${isAdmin ? "border border-dashed border-gray-300" : ""}
+                `}
+              >
+                <span className="text-lg font-medium">{format(day, "d")}</span>
+                {hasSlots && !isDaySelected && (
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1"></span>
+                )}
+                {isDayToday && (
+                  <span className="text-[0.6rem] font-semibold text-blue-600">
+                    {t('calendar.today')}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Right Column: Day Details and Time Slots */}
       <div className="flex-1 p-4 bg-gray-50 rounded-xl shadow-lg border border-gray-100">
-        <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          {selectedDay
-            ? format(selectedDay, 'PPPP', { locale: dateFnsLocale })
-            : t('calendar.select_date')}
-        </h3>
+     <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+  {selectedDay
+    ? format(selectedDay, 'PPPP', { locale: dateFnsLocale }).replace(/^\w/, c => c.toUpperCase())
+    : t('calendar.select_date')}
+</h3>
 
         <div className="space-y-4">
           {selectedDay ? (
@@ -341,14 +365,14 @@ const getSlotStatus = (timeSlot: string) => {
 
                 return (
                   <div key={slotTime} className={`w-full p-4 rounded-lg text-lg font-semibold shadow-md transition-all duration-200 flex items-center justify-between
-                    ${status === 'blocked'
-                      ? "bg-red-100 text-red-700 cursor-not-allowed opacity-70"
-                      : status === 'reserved' || isSlotPast
-                      ? "bg-yellow-100 text-yellow-700 cursor-not-allowed opacity-70"
-                      : "bg-green-100 text-green-700 hover:bg-green-200 hover:shadow-lg transform hover:scale-[1.01]"}
-                    ${isAdmin && isBookable && 'border-2 border-blue-400'}
-                    ${isAdmin && isSelectedForEnable && 'bg-blue-200 !text-blue-800'}
-                  `}>
+                      ${status === 'blocked'
+                        ? "bg-red-100 text-red-700 cursor-not-allowed opacity-70"
+                        : status === 'reserved' || isSlotPast
+                          ? "bg-yellow-100 text-yellow-700 cursor-not-allowed opacity-70"
+                          : "bg-green-100 text-green-700 hover:bg-green-200 hover:shadow-lg transform hover:scale-[1.01]"}
+                      ${isAdmin && isBookable && 'border-2 border-blue-400'}
+                      ${isAdmin && isSelectedForEnable && 'bg-blue-200 !text-blue-800'}
+                    `}>
                     <span>{slotTime}</span>
 
                     {isAdmin ? (
@@ -359,7 +383,8 @@ const getSlotStatus = (timeSlot: string) => {
                         disabled={
                           status === 'reserved' ||
                           status === 'blocked' ||
-                          isSlotPast
+                          isSlotPast ||
+                          isLoading // Disable checkbox during loading
                         }
                         className="form-checkbox h-5 w-5 text-blue-600"
                       />
@@ -374,10 +399,10 @@ const getSlotStatus = (timeSlot: string) => {
                         {status === 'blocked'
                           ? t('calendar.blocked')
                           : status === 'reserved'
-                          ? t('calendar.reserved')
-                          : isSlotPast
-                          ? t('calendar.past')
-                          : t('calendar.available')}
+                            ? t('calendar.reserved')
+                            : isSlotPast
+                              ? t('calendar.past')
+                              : t('calendar.available')}
                       </button>
                     )}
                   </div>
@@ -393,18 +418,39 @@ const getSlotStatus = (timeSlot: string) => {
               {t('calendar.select_date')}
             </p>
           )}
+
         </div>
+
+        
+
+        
 
         {isAdmin && selectedDay && (
           <button
             onClick={handleEnableSlots}
-            disabled={selectedSlotsToEnable.length === 0}
-            className="mt-6 w-full p-4 rounded-lg text-lg font-medium bg-purple-600 text-white shadow-md hover:bg-purple-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={selectedSlotsToEnable.length === 0 || isLoading} // Disable button during loading
+            className="mt-6 w-full p-4 rounded-lg text-lg font-medium bg-purple-600 text-white shadow-md hover:bg-purple-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
+            {isLoading ? (
+              <svg className="animate-spin h-5 w-5 text-white mr-3" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            ) : null}
             {t('calendar.enable_slots')}
           </button>
         )}
       </div>
+<ConfirmationModal
+  show={showConfirmModal}
+  message={confirmModalMessage}
+  onCancel={() => setShowConfirmModal(false)}
+  onConfirm={executeReservation}
+  confirmText={t('calendar.confirm_button')}
+  cancelText={t('calendar.cancel_button')}
+/>
     </div>
+
+    
   );
 }
