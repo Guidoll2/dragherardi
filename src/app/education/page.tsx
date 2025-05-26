@@ -100,7 +100,7 @@ export default function ResearchPage() {
           onClick={handleLanguageChange}
         >
           <span
-            className={`absolute text-xs top-12 right-0 font-semibold text-gray-600 bg-emerald-100 p-2 rounded-lg shadow-lg transition-all duration-300 transform ${
+            className={`absolute text-xs top-16 right-8 font-semibold text-gray-600 bg-emerald-100 p-2 rounded-lg shadow-lg transition-all duration-300 transform ${
               hover
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-2 pointer-events-none"

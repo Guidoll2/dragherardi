@@ -166,7 +166,7 @@ export default function PostsPage() {
    <Header language={language} onLanguageChange={handleLanguageChange} />
 
     {/* Botón de idioma */}
-<div className="absolute top-16 left-8 z-20">
+<div className="absolute top-16 right-8 z-20">
   <button
     onClick={handleLanguageChange}
     className="text-sm border p-2 rounded-lg font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 shadow-lg"
