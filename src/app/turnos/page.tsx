@@ -76,7 +76,7 @@ function Turnos() {
               ? "Te invito a programar una reunión virtual para compartir ideas, responder preguntas o colaborar."
               : "I invite you to schedule a virtual meeting to share ideas, answer questions, or collaborate."}
           </p>
-          <p className="text-md sm:text-lg text-gray-500">
+          <p className="text-md sm:text-lg text-gray-500 italic">
             {languageFromCookie === "ES"
               ? "Por favor, selecciona un día y horario que te sea conveniente."
               : "Please select a day and time that works for you."}
@@ -84,33 +84,30 @@ function Turnos() {
         </div>
       </div>
       {/* Sección de inicio de sesión / calendario */}
-      <div className="flex w-full h-full justify-center mt-6">
-        {/* Mostrar al usuario que debe iniciar sesión */}
-        <SignedOut>
-          <div className="text-center">
-            <p className="mb-4 text-gray-700">
-              {languageFromCookie === "ES"
-                ? "Por favor, inicia sesión para reservar un turno."
-                : "Please sign in to book an appointment."}
-            </p>
-            {/* Componente de Clerk para iniciar sesión */}
-            <div className="bg-emerald-200 hover:bg-purple-200 ease-in-out duration-700 text-gray-800 p-2 rounded-lg shadow-2xl">
-              <SignInButton></SignInButton>
-            </div>
-          </div>
-        </SignedOut>
-
-        {/* Una vez firmado, mostrar calendario y botón de cerrar sesión */}
-        <div className="flex flex-col items-center justify-center w-screen">
-          <SignedIn>
-            {/* AQUÍ ES DONDE CAMBIAMOS EL PASO DE LA PROP */}
-            <CalendarComponent language={standardizedLanguage} />
-            <div className="w-full flex justify-center p-4">
-              <SignOutButton />
-            </div>
-          </SignedIn>
-        </div>
+<div className="flex justify-center items-start w-full mt-10 px-4">
+  <SignedOut>
+    <div className="backdrop-blur-md bg-white/60 dark:bg-white/10 shadow-xl rounded-2xl p-8 max-w-md w-full text-center border border-white/30">
+      <p className="mb-6 text-gray-800 dark:text-white text-lg font-medium">
+        {languageFromCookie === "ES"
+          ? "Por favor, iniciá sesión para agendar una reunión."
+          : "Please sign in to schedule a meeting."}
+      </p>
+      <div className="inline-block bg-emerald-200 hover:bg-purple-200 transition-colors duration-500 text-gray-800 px-4 py-2 rounded-lg shadow-md">
+        <SignInButton />
       </div>
+    </div>
+  </SignedOut>
+
+  <SignedIn>
+    <div className="flex flex-col items-center justify-center w-full">
+      <CalendarComponent language={standardizedLanguage} />
+      <div className="w-full flex justify-center p-4">
+        <SignOutButton />
+      </div>
+    </div>
+  </SignedIn>
+</div>
+
     </div>
   );
 }
