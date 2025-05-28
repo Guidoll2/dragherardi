@@ -154,7 +154,7 @@
       <img
         src="/logotop.png"
         alt="Brain Visualization"
-        className="shadow-2xl object-cover w-full h-full" 
+        className="shadow-2xl object-cover w-full h-full rounded-r-lg" 
       />
     </div>
   </motion.div>
