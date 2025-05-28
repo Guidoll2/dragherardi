@@ -4,7 +4,6 @@
   import Cookies from "js-cookie";
   import Header from "./components/header";
   import Link from "next/link";
-  import Image from "next/image";
   import { motion } from "framer-motion";
 
   export default function Home() {
@@ -112,57 +111,54 @@
           </p>
         </div>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto px-6 py-16 bg-gray-50 rounded-2xl shadow-lg mt-12">
-          {/* Texto: Título, subtítulo y CTA */}
-          <motion.div
-            className="space-y-6"
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-          >
-            <motion.h1
-              variants={fadeIn}
-              className="text-4xl md:text-5xl font-playfair font-semibold text-gray-700"
-            >
-              {language === "EN"
-                ? "Understand, respect, and care"
-                : "Comprender, respetar y cuidar"}
-            </motion.h1>
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto px-6 py-16 bg-gray-50 rounded-2xl shadow-lg mt-12">
+  {/* Texto: Título, subtítulo y CTA */}
+  <motion.div
+    className="space-y-6"
+    initial="hidden"
+    animate="visible"
+    variants={stagger}
+  >
+    <motion.h1
+      variants={fadeIn}
+      className="text-4xl md:text-5xl font-playfair font-semibold text-gray-700"
+    >
+      {language === "EN"
+        ? "Understand, respect, and care"
+        : "Comprender, respetar y cuidar"}
+    </motion.h1>
 
-            <motion.p
-              variants={fadeIn}
-              className="text-lg font-inter text-gray-600"
-            >
-              {language === "EN"
-                ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
-                : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
-            </motion.p>
-            <Link href={"mailto:candegherardi@gmail.com"} target="_blank">
-              <motion.button
-                variants={fadeIn}
-                className="px-6 py-3 font-inter font-semibold rounded-full bg-green-600 text-white shadow-md hover:scale-105 transition-transform mt-4"
-              >
-                {language === "EN" ? "Contact me" : "Contacto"}
-              </motion.button>
-            </Link>
-          </motion.div>
-          {/* Imágenes: Hero visuals */}
-          <motion.div
-            variants={fadeIn}
-            className="flex justify-center mt-8 md:mt-0"
-          >
-            <div className="flex flex-row gap-2">
-              <Image
-                src="/logotop.png"
-                width={300}
-                height={300}
-                alt="Brain Visualization"
-                className="rounded-lg shadow-xl border-4 border-teal-600 h-1/6"
-                priority
-              />
-            </div>
-          </motion.div>
-        </section>
+    <motion.p
+      variants={fadeIn}
+      className="text-lg font-inter text-gray-600"
+    >
+      {language === "EN"
+        ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
+        : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
+    </motion.p>
+    <Link href={"mailto:candegherardi@gmail.com"} target="_blank">
+      <motion.button
+        variants={fadeIn}
+        className="px-6 py-3 font-inter font-semibold rounded-full bg-green-600 text-white shadow-md hover:scale-105 transition-transform mt-4"
+      >
+        {language === "EN" ? "Contact me" : "Contacto"}
+      </motion.button>
+    </Link>
+  </motion.div>
+  {/* Imágenes: Hero visuals */}
+  <motion.div
+    variants={fadeIn}
+    className="flex justify-center mt-8 md:mt-0 w-full h-full" 
+  >
+    <div className="flex flex-row gap-2 w-full h-full"> {/* Y aquí */}
+      <img
+        src="/logotop.png"
+        alt="Brain Visualization"
+        className="rounded-lg shadow-2xl border-2 border-teal-600 object-cover w-full h-full" 
+      />
+    </div>
+  </motion.div>
+</section>
         {/* Sección de servicios */}
 
         <section className="max-w-7xl mx-auto px-4 py-16">
@@ -189,13 +185,14 @@
                     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
                   }}
                 >
-                  <div className="relative h-56 w-full">
-                    <Image
+                  <div className="relative h-fit w-full">
+                    <img
                       src={card.img}
                       alt={language === "ES" ? card.titleES : card.titleEN}
-                      layout="fill"
-                      objectFit="cover"
-                      className="hover:scale-105 transition-transform duration-700"
+                      width={500}
+                      height={300}
+                      loading="lazy"
+                      className="hover:scale-105 transition-transform duration-700 object-cover"
                     />
                   </div>
                   <div className="p-6 flex flex-col justify-between h-56">
