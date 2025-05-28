@@ -15,7 +15,7 @@ interface Translations {
   blocked: string;
   reserved: string;
   available: string;
-  past: string; // <-- ¡AÑADIDO! Para el estado "pasado" en los turnos
+  past: string; // <-- ¡AÑADIDO! Para el estado "pasado" en los reunións
   of: string; // <-- ¡AÑADIDO! Para "d de MMMM"
 
   // Appointment related alerts
@@ -78,37 +78,37 @@ export const messages: Record<AppLanguage, Translations> = {
     of: "de", // ¡AÑADIDO!
 
     // Appointment related alerts
-    mustLoginToReserve: "Debes iniciar sesión para reservar un turno.",
-    confirmReservation: (date: string, timeSlot: string) => `¿Deseas reservar el turno del ${date} a las ${timeSlot}?`,
+    mustLoginToReserve: "Debes iniciar sesión para reservar una reunión.",
+    confirmReservation: (date: string, timeSlot: string) => `¿Deseas reservar la reunión del ${date} a las ${timeSlot}?`,
     appointmentReservedSuccess: "Reunión reservada con éxito. Revisa tu email para los detalles.", // ¡MODIFICADO!
     errorReservingAppointment: "Error al reservar la reunión.",
     internalServerErrorReserve: "Error interno del servidor al reservar la reunión.",
-    appointmentsEnabled: "Turnos habilitados para el día.", // ¡MODIFICADO!
-    errorEnablingAppointments: "Error habilitando turnos.",
-    internalServerErrorEnable: "Error interno del servidor al habilitar turnos.",
-    slotNotAvailable: "El turno no está disponible, ya fue reservado o bloqueado.", // ¡AÑADIDO!
+    appointmentsEnabled: "Reuniones habilitadas para el día.", // ¡MODIFICADO!
+    errorEnablingAppointments: "Error habilitando reuniones.",
+    internalServerErrorEnable: "Error interno del servidor al habilitar reuniones.",
+    slotNotAvailable: "La reunión no está disponible, ya fue reservado o bloqueado.", // ¡AÑADIDO!
 
     // Toaster messages for loading states (¡NUEVAS TRADUCCIONES!)
     loadingRole: "Cargando rol de usuario...",
-    loadingAppointments: "Cargando turnos disponibles...",
-    reservingAppointment: "Reservando turno...",
+    loadingAppointments: "Cargando reuniones disponibles...",
+    reservingAppointment: "Reservando reunión...",
     enablingSlots: "Habilitando horarios...",
     errorLoadingRole: "Error al cargar el rol de usuario.",
-    errorLoadingAppointments: "Error al cargar los turnos.",
+    errorLoadingAppointments: "Error al cargar los reuniones.",
 
     // Email content (for user confirmation)
-    emailSubjectUser: "Confirmación de tu turno",
+    emailSubjectUser: "Confirmación de tu reunión",
     emailGreeting: (firstName: string) => `¡Hola ${firstName}!\n\n`,
-    emailConfirmedMessage: "Tu turno ha sido confirmado con éxito.",
+    emailConfirmedMessage: "Tu reunión ha sido confirmado con éxito.",
     emailBookingDetails: "Detalles de tu reserva:",
     emailWaiting: "¡Te esperamos!",
     emailDate: "Fecha", // ¡AÑADIDO!
     emailTime: "Hora", // ¡AÑADIDO!
 
     // Email content (for professional notification)
-    emailSubjectProfessional: "Nuevo turno reservado",
-    emailNewBookingMessage: "Se ha reservado un nuevo turno.",
-    emailBookingDetailsProfessional: "Detalles del turno:",
+    emailSubjectProfessional: "Nueva reunión reservado",
+    emailNewBookingMessage: "Se ha reservado un nueva reunión.",
+    emailBookingDetailsProfessional: "Detalles de la reunión:",
     emailReservantInfo: "Información del reservante:",
     emailName: "Nombre:",
     emailEmail: "Email:",

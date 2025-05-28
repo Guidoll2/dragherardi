@@ -8,37 +8,37 @@
     "saturday": "Sábado",
     "sunday": "Domingo",
     "today": "Hoy",
-    "select_date": "Selecciona una fecha para ver los turnos",
+    "select_date": "Selecciona una fecha para ver los horarios disponibles",
     "blocked": "Bloqueado",
     "reserved": "Reservado",
     "available": "Reservar",
     "past": "Pasado",
-    "enable_slots": "Habilitar Turnos Seleccionados",
-    "no_slots_to_enable": "No hay turnos disponibles para habilitar en este día.",
-    "no_appointments": "No hay turnos disponibles para este día.",
+    "enable_slots": "Habilitar horarios Seleccionados",
+    "no_slots_to_enable": "No hay horarios disponibles para habilitar en este día.",
+    "no_appointments": "No hay horarios disponibles para este día.",
     "confirm_button": "Confirmar",
     "cancel_button": "Cancelar"
   },
 
  "messages": {
-    "enabling_slots_loading": "Habilitando turnos...",
-    "enable_success": "Turnos habilitados con éxito.",
-    "enable_error": "Error al habilitar turnos: {error}",
+    "enabling_slots_loading": "Habilitando horarios...",
+    "enable_success": "horarios habilitados con éxito.",
+    "enable_error": "Error al habilitar horarios: {error}",
     "not_authorized": "No estás autorizado para realizar esta acción.",
-    "incomplete_data": "Datos incompletos para habilitar turnos.",
-    "no_authentication": "Necesitas iniciar sesión para reservar un turno.",
+    "incomplete_data": "Datos incompletos para habilitar horarios.",
+    "no_authentication": "Necesitas iniciar sesión para reservar una reunion.",
     "select_date_first": "Por favor, selecciona una fecha primero.",
-    "confirm_reservation": "¿Estás seguro de que quieres reservar el turno del {date} a las {time}?",
-    "reserving_slot_loading": "Reservando turno...",
-    "reservation_success": "Turno reservado con éxito. ¡Te esperamos!",
-    "reservation_error": "Error al reservar turno: {error}"
+    "confirm_reservation": "¿Estás seguro de que quieres reservar el horario del {date} a las {time}?",
+    "reserving_slot_loading": "Reservando reunion...",
+    "reservation_success": "Reunión reservada con éxito. ¡Te esperamos!",
+    "reservation_error": "Error al reservar reunión: {error}"
   },
   "email": {
-    "professional_subject": "Nuevo turno reservado",
-    "professional_text_details": "Se ha reservado un nuevo turno.\n\nDetalles del turno:\nFecha: {date}\nHora: {time}\n\nInformación del reservante:\nNombre: {firstName} {lastName}\nEmail: {email}\nID de Clerk: {clerkId}",
-    "professional_html_details": "<p>Se ha reservado un nuevo turno.</p><p><strong>Detalles del turno:</strong></p><ul><li><strong>Fecha:</strong> {date}</li><li><strong>Hora:</strong> {time}</li></ul><p><strong>Información del reservante:</strong></p><ul><li><strong>Nombre:</strong> {firstName} {lastName}</li><li><strong>Email:</strong> {email}</li><li><strong>ID de Clerk:</strong> {clerkId}</li></ul>",
-    "user_subject": "Confirmación de tu turno",
-    "user_text_confirmation": "¡Hola {firstName}!\n\nTu turno ha sido confirmado con éxito.\n\nDetalles de tu reserva:\nFecha: {date}\nHora: {time}\n\n¡Te esperamos!",
-    "user_html_confirmation": "<p>¡Hola {firstName}!</p><p>Tu turno ha sido confirmado con éxito.</p><p><strong>Detalles de tu reserva:</strong></p><ul><li><strong>Fecha:</strong> {date}</li><li><strong>Hora:</strong> {time}</li></ul><p>¡Te esperamos!</p>"
+    "professional_subject": "Nuevo reunión reservado",
+    "professional_text_details": "Se ha reservado una nueva reunión.\n\nDetalles de la reunión:\nFecha: {date}\nHora: {time}\n\nInformación del reservante:\nNombre: {firstName} {lastName}\nEmail: {email}\nID de Clerk: {clerkId}",
+    "professional_html_details": "<p>Se ha reservado una nueva reunión.</p><p><strong>Detalles de la reunión:</strong></p><ul><li><strong>Fecha:</strong> {date}</li><li><strong>Hora:</strong> {time}</li></ul><p><strong>Información del reservante:</strong></p><ul><li><strong>Nombre:</strong> {firstName} {lastName}</li><li><strong>Email:</strong> {email}</li><li><strong>ID de Clerk:</strong> {clerkId}</li></ul>",
+    "user_subject": "Confirmación de tu reunión",
+    "user_text_confirmation": "¡Hola {firstName}!\n\nTu reunión ha sido confirmada con éxito.\n\nDetalles de tu reserva:\nFecha: {date}\nHora: {time}\n\n¡Te esperamos!",
+    "user_html_confirmation": "<p>¡Hola {firstName}!</p><p>Tu reunión ha sido confirmada con éxito.</p><p><strong>Detalles de tu reserva:</strong></p><ul><li><strong>Fecha:</strong> {date}</li><li><strong>Hora:</strong> {time}</li></ul><p>¡Te esperamos!</p>"
   }
 }

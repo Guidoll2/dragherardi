@@ -130,9 +130,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, appointment: existingAppointment });
 
   } catch (error) {
-    console.error("Error reservando turno:", error);
+    console.error("Error reservando reunion:", error);
     return NextResponse.json(
-      { error: "Error interno del servidor al reservar el turno." },
+      { error: "Error interno del servidor al reservar el reunion." },
       { status: 500 }
     );
   }

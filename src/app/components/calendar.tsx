@@ -112,7 +112,7 @@ const executeReservation = async () => {
         setAppointments(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching appointments:", error);
-        toast.error("Error al cargar los turnos.");
+        toast.error("Error al cargar los reuniones.");
       }
     };
 

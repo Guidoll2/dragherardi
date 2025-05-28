@@ -153,11 +153,11 @@
           >
             <div className="flex flex-row gap-2">
               <Image
-                src="/logo.webp"
+                src="/logotop.png"
                 width={300}
                 height={300}
                 alt="Brain Visualization"
-                className="rounded-lg shadow-xl border-4 border-teal-600"
+                className="rounded-lg shadow-xl border-4 border-teal-600 h-1/6"
                 priority
               />
             </div>

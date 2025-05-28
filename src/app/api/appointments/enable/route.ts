@@ -68,7 +68,7 @@
 
       return NextResponse.json({ success: true, createdSlots });
     } catch (err) {
-      console.error("Error al verificar el rol del usuario o habilitar turnos:", err);
+      console.error("Error al verificar el rol del usuario o habilitar reuniones:", err);
       return NextResponse.json(
         { error: "Error interno del servidor." },
         { status: 500 }
