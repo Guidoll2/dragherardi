@@ -111,10 +111,10 @@
           </p>
         </div>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto px-6 py-16 bg-gray-50 rounded-2xl shadow-lg mt-12">
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-amber-50 rounded-2xl shadow-lg mt-12">
   {/* Texto: Título, subtítulo y CTA */}
   <motion.div
-    className="space-y-6"
+    className="space-y-6 p-4"
     initial="hidden"
     animate="visible"
     variants={stagger}
@@ -148,13 +148,13 @@
   {/* Imágenes: Hero visuals */}
   <motion.div
     variants={fadeIn}
-    className="flex justify-center mt-8 md:mt-0 w-full h-full" 
+    className="flex justify-center mt-8 md:mt-0 w-full" 
   >
-    <div className="flex flex-row gap-2 w-full h-full"> {/* Y aquí */}
+    <div className="flex flex-row gap-2 w-full"> {/* Y aquí */}
       <img
         src="/logotop.png"
         alt="Brain Visualization"
-        className="rounded-lg shadow-2xl border-2 border-teal-600 object-cover w-full h-full" 
+        className="shadow-2xl object-cover w-full h-full" 
       />
     </div>
   </motion.div>
