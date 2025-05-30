@@ -21,7 +21,7 @@ export default function PostsPage() {
   const { user } = useUser();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editText, setEditText] = useState("");
-    const [language, setLanguage] = useState("EN");
+  const [language, setLanguage] = useState("EN");
 
   useEffect(() => {
     const savedLanguage = Cookies.get("language");
