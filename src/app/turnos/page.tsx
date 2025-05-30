@@ -11,7 +11,7 @@ import {
 } from "@clerk/nextjs";
 
 function Turnos() {
-  const [hover, setHover] = useState(false);
+  
   const [languageFromCookie, setLanguageFromCookie] = useState("EN"); // Renombramos para claridad
   const [language] = useState<"ES" | "EN">("ES");
 
@@ -38,29 +38,8 @@ function Turnos() {
   return (
     <div className="flex flex-col bg-gradient-to-b from-purple-200">
       {/* Selector de idioma */}
-      <div
-        id="language"
-        className="relative cursor-pointer top-12"
-        onClick={handleLanguageChange}
-      >
-        <span
-          className={`absolute text-xs top-16 right-8 font-semibold text-gray-600 transition-all duration-700 ease-in-out transform ${
-            hover
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-2 pointer-events-none"
-          }`}
-        >
-          Change to {languageFromCookie === "ES" ? "English" : "Spanish"} site
-        </span>
-        <p
-          className="text-sm absolute top-2 md:top-5 border p-2 rounded-lg right-2 md:right-14 font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 ease-in-out duration-700 shadow-lg"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          EN | ES
-        </p>
-      </div>
-
+   
+   
    <Header language={language} onLanguageChange={handleLanguageChange} />
 
       <div className="relative mt-12 w-full  overflow-hidden p-8 sm:p-10 flex flex-col items-start text-start">
