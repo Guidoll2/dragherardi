@@ -114,14 +114,6 @@
         ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
         : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
     </motion.p>
-    <Link href={"mailto:candegherardi@gmail.com"} target="_blank">
-      <motion.button
-        variants={fadeIn}
-        className="px-6 py-3 font-inter font-semibold rounded-full bg-green-600 text-white shadow-md hover:scale-105 transition-transform mt-4"
-      >
-        {language === "EN" ? "Contact me" : "Contacto"}
-      </motion.button>
-    </Link>
   </motion.div>
   {/* Imágenes: Hero visuals */}
   <motion.div
@@ -191,6 +183,17 @@
             ))}
           </motion.div>
         </section>
+        <footer className="w-full bg-[#D5E8D4] py-8 text-center text-[#5D8D7C] border-t border-[#5D8D7C]">
+    <p className="text-sm">
+        {language === "EN" ? "Connect: " : "Conecta: "}
+        <Link href="mailto:dragherardi@gmail.com" className="hover:underline font-semibold">
+            dragherardi@gmail.com
+        </Link>
+    </p>
+    <p className="text-xs mt-2">
+        © {new Date().getFullYear()} Candelaria Gherardi. All rights reserved.
+    </p>
+</footer>
         <div className="h-12"></div>
       </main>
     );
