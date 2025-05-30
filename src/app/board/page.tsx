@@ -154,10 +154,8 @@ export default function PostsPage() {
 <div
   className="relative min-h-screen bg-cover bg-center overflow-auto"
   style={{
-    backgroundImage:
-      "url('https://images.pexels.com/photos/20657537/pexels-photo-20657537.jpeg')", // Aula universitaria vacía
+    backgroundImage: "url('/aula.png')", // Ruta relativa al archivo en /public
     backgroundAttachment: "fixed",
-
     filter: "blur(0px)",
   }}
 >
@@ -166,14 +164,6 @@ export default function PostsPage() {
    <Header language={language} onLanguageChange={handleLanguageChange} />
 
     {/* Botón de idioma */}
-<div className="absolute top-16 right-8 z-20">
-  <button
-    onClick={handleLanguageChange}
-    className="text-sm border p-2 rounded-lg font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 shadow-lg"
-  >
-    EN | ES
-  </button>
-</div>
 
 <div
   className="

@@ -88,28 +88,7 @@
           <Header language={language} onLanguageChange={handleLanguageChange} />
         </div>
 
-        <div
-          id="language"
-          className="relative cursor-pointer "
-          onClick={handleLanguageChange}
-        >
-          <span
-            className={`absolute text-xs top-16 right-8 font-semibold text-gray-600 bg-emerald-100 p-2 rounded-lg shadow-lg transition-all duration-700 ease-in-out transform ${
-              hover
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-2 pointer-events-none"
-            }`}
-          >
-            Change to {language === "ES" ? "English" : "Spanish"} site
-          </span>
-          <p
-            className="text-sm absolute top-2 md:top-5 border p-2 rounded-lg  right-2 md:right-14 font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 ease-in-out duration-700 shadow-lg"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            EN | ES
-          </p>
-        </div>
+
 
       <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-amber-50 rounded-2xl shadow-lg mt-12">
   {/* Texto: Título, subtítulo y CTA */}
