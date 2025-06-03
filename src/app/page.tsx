@@ -44,7 +44,7 @@
       },
       {
         href: "/turnos",
-        img: "/appoint.png",
+        img: "/apoointment.png",
         titleES: "Reuniones remotas",
         titleEN: "Online Appointments",
         descES:
