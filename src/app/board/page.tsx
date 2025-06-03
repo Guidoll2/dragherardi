@@ -5,6 +5,7 @@ import Header from "@/app/components/header";
 import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/nextjs";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import { Toaster } from "react-hot-toast";
 
 type Post = {
   _id?: string;
@@ -22,6 +23,8 @@ export default function PostsPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editText, setEditText] = useState("");
   const [language, setLanguage] = useState("EN");
+   const [posting, setPosting] = useState(false); 
+     const [deletingId, setDeletingId] = useState<string | null>(null); 
 
   useEffect(() => {
     const savedLanguage = Cookies.get("language");
@@ -59,14 +62,15 @@ export default function PostsPage() {
 
   const handlePostSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!postText.trim()) return;
+    if (!postText.trim() || posting) return; // Bloquea si ya está posteando
 
     if (!user) {
       toast.error("Debes iniciar sesión para publicar.");
       return;
     }
 
-    toast.loading("Publicando...");
+    setPosting(true); // Bloquea el botón
+    const toastId = toast.loading("Publicando..."); // Toaster de cargando
     try {
       const res = await fetch("/api/posts", {
         method: "POST",
@@ -79,48 +83,54 @@ export default function PostsPage() {
         }),
       });
 
-      toast.dismiss();
-       if (res.ok) {
-    setPostText("");
-    const newPost = await res.json();
-    const updatedPosts = [newPost, ...posts];
-    setPosts(updatedPosts);
-    localStorage.setItem("posts", JSON.stringify(updatedPosts));
-    toast.success("¡Post publicado!");
-  }else {
+      if (res.ok) {
+        setPostText("");
+        const newPost = await res.json();
+        const updatedPosts = [newPost, ...posts];
+        setPosts(updatedPosts);
+        localStorage.setItem("posts", JSON.stringify(updatedPosts));
+        toast.success("¡Post publicado!", { id: toastId });
+      } else {
         const error = await res.json();
-        toast.error("Error: " + error.error);
+        toast.error("Error: " + error.error, { id: toastId });
       }
-    } catch  {
-      toast.dismiss();
-      toast.error("Error de red.");
+    } catch {
+      toast.error("Error de red.", { id: toastId });
+    } finally {
+      setPosting(false); // Libera el botón
+      toast.dismiss(toastId); // Cierra el loading si sigue abierto
     }
   };
 
+
   const handleDelete = async (id: string | undefined) => {
-    if (!id) return;
-    toast.loading("Borrando post...");
+    if (!id || deletingId) return;
+    setDeletingId(id);
+    const toastId = toast.loading(language === "EN" ? "Deleting post..." : "Borrando post...");
     try {
       const res = await fetch("/api/posts", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, userId: user?.id }),
       });
-      toast.dismiss();
-       if (res.ok) {
-    const updatedPosts = posts.filter((p) => p._id !== id);
-    setPosts(updatedPosts);
-    localStorage.setItem("posts", JSON.stringify(updatedPosts));
-    toast.success("Post borrado.");
-  } else {
+      toast.dismiss(toastId);
+      if (res.ok) {
+        const updatedPosts = posts.filter((p) => p._id !== id);
+        setPosts(updatedPosts);
+        localStorage.setItem("posts", JSON.stringify(updatedPosts));
+        toast.success(language === "EN" ? "Post deleted." : "Post borrado.");
+      } else {
         const error = await res.json();
-        toast.error(error.error || "Error al borrar.");
+        toast.error(error.error || (language === "EN" ? "Error deleting." : "Error al borrar."), { id: toastId });
       }
     } catch {
-      toast.dismiss();
-      toast.error("Error de red.");
+      toast.dismiss(toastId);
+      toast.error(language === "EN" ? "Network error." : "Error de red.", { id: toastId });
+    } finally {
+      setDeletingId(null);
     }
   };
+
 
   const handleEdit = async (id: string | undefined) => {
     if (!id) return;
@@ -151,10 +161,12 @@ export default function PostsPage() {
   };
 
   return (
+
+    <>      <Toaster position="bottom-left" reverseOrder={false} />
 <div
   className="relative min-h-screen bg-cover bg-center overflow-auto"
   style={{
-    backgroundImage: "url('/aula.png')", // Ruta relativa al archivo en /public
+    backgroundImage: "url('/aula2.png')", // Ruta relativa al archivo en /public
     backgroundAttachment: "fixed",
     filter: "blur(0px)",
   }}
@@ -196,11 +208,13 @@ export default function PostsPage() {
             value={postText}
             onChange={(e) => setPostText(e.target.value)}
             rows={3}
+             disabled={posting}
           />
           <button
             type="submit"
             className="w-full mt-3 bg-[#fff176] text-[#20402b] font-bold py-2 rounded-lg shadow-md hover:bg-[#fffde7] transition-colors font-handwriting text-lg"
-          >
+          disabled={posting} 
+         >
             ✍️ {language === "EN" ? "Post" : "Publicar"}
           </button>
         </form>
@@ -268,13 +282,14 @@ export default function PostsPage() {
                         onClick={() => {
                           setEditingId(post._id!);
                           setEditText(post.content);
-                        }}
+                        }}  disabled={deletingId === post._id}
                       >
                              {language === "EN" ? "Edit" : "Editar"}
                       </button>
                       <button
                         className="text-xs bg-orange-400 px-2 py-1 rounded text-white"
                         onClick={() => handleDelete(post._id)}
+                         disabled={deletingId === post._id} 
                       >
                           {language === "EN" ? "Delete" : "Borrar"}
                       </button>
@@ -287,5 +302,6 @@ export default function PostsPage() {
         </div>
       </div>
     </div>
+  </>
   );
 }

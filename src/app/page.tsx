@@ -32,7 +32,7 @@
     const cards = [
       {
         href: "/education",
-        img: "/Iaresearch.webp",
+        img: "/researchfinal.png",
         titleES: "Investigación",
         titleEN: "Research",
         descES:
@@ -44,7 +44,7 @@
       },
       {
         href: "/turnos",
-        img: "/turnos.webp",
+        img: "/appoint.png",
         titleES: "Reuniones remotas",
         titleEN: "Online Appointments",
         descES:
@@ -56,7 +56,7 @@
       },
       {
         href: "/board",
-        img: "/board.webp",
+        img: "/board.png",
         titleES: "Pizarra Virtual",
         titleEN: "Virtual Board",
         descES: "Comparte ideas y experiencias en un espacio dedicado.",

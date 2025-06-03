@@ -175,7 +175,7 @@ export default function ResearchPage() {
           <img
           src="/research.png" // Ruta a tu imagen
           alt={language === "ES" ? "Ilustración de la investigación de Candelaria" : "Illustration of Candelaria's research"}
-          className="max-w-xl mx-auto object-cover rounded-lg shadow-xl" // Tamaño máximo para que no sea abrumador
+          className="w-24 h-24 mx-auto object-cover rounded-full shadow-2xl" // Tamaño máximo para que no sea abrumador
         />
       </section>
     </main>
