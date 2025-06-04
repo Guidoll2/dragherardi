@@ -21,14 +21,22 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
           <AnimatedIcon />
           <div className="flex flex-col leading-tight">
             <span className="font-semibold text-gray-800 text-lg">C.Gherardi</span>
-            <span className="text-sm text-gray-500">
-              {language === "EN"
-                ? "Health & Environmental Professional"
-                : "Profesional de Salud y Medioambiente"}
-            </span>
-          </div>
+         </div>
         </div>
       </Link>
+
+      <div className="flex flex-row space-x-2 items-center ">
+          <span className="bg-emerald-100 hover:bg-purple-100 px-3 py-1 rounded-full shadow-md transition-colors duration-300"> {language === "EN"
+        ? "Research"
+        : "Investigacion"}</span>
+        
+          <span className="bg-emerald-100 hover:bg-purple-100 px-3 py-1 rounded-full shadow-md transition-colors duration-300"> {language === "EN"
+        ? "Appointments"
+        : "Agenda"}</span>
+        
+          <span className="bg-emerald-100 hover:bg-purple-100 px-3 py-1 rounded-full shadow-md transition-colors duration-300"> {language === "EN"
+        ? "Board"
+        : "Pizarra"}</span></div>
 
       <div className="flex items-center space-x-4"> {/* Contenedor para el selector y UserButton */}
         {/* Selector de idioma - Diseño mejorado */}
@@ -38,6 +46,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         >
+
           <span
             className="text-sm font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 px-3 py-1 rounded-full shadow-md transition-colors duration-300"
           >

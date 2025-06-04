@@ -167,7 +167,7 @@
                   </div>
                   <div className="p-6 flex flex-col justify-between h-56">
                     <div>
-                      <h3 className="text-xl font-medium text-green-400 mb-2">
+                      <h3 className="text-xl font-medium text-green-500 mb-2">
                         {language === "ES" ? card.titleES : card.titleEN}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">
