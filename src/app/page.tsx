@@ -5,6 +5,7 @@
   import Header from "./components/header";
   import Link from "next/link";
   import { motion } from "framer-motion";
+  import Image from "next/image";
 
   export default function Home() {
    const [language, setLanguage] = useState("EN");
@@ -121,7 +122,7 @@
     className="flex justify-center mt-8 md:mt-0 w-full" 
   >
     <div className="flex flex-row gap-2 w-full"> {/* Y aquí */}
-      <img
+      <Image
         src="/logotop.png"
         alt="Brain Visualization"
         className="shadow-2xl object-cover w-full h-full rounded-r-lg" 
@@ -156,7 +157,7 @@
                   }}
                 >
                   <div className="relative h-fit w-full">
-                    <img
+                    <Image
                       src={card.img}
                       alt={language === "ES" ? card.titleES : card.titleEN}
                       width={500}
