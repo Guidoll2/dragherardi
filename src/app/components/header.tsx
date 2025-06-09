@@ -25,7 +25,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
       {/* Logo */}
       <Link href="/">
         <div className="flex items-center space-x-4">
-          {/* <AnimatedIcon /> */} {/* Descomenta si lo usas */}
+          {/* <AnimatedIcon /> */}
           <div className="flex flex-col leading-tight">
             <span className="font-semibold text-gray-800 text-lg">C.Gherardi</span>
           </div>
@@ -33,7 +33,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
       </Link>
 
       {/* Botón de Hamburguesa para Móviles */}
-      <div className="flex items-center md:hidden"> {/* Visible solo en pantallas pequeñas */}
+       <div className="flex items-center md:hidden">
         <button
           onClick={toggleMenu}
           className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300 p-2 rounded-md"
@@ -67,47 +67,48 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
       </div>
 
       {/* Menú de Navegación (visible en desktop, oculto por defecto en móvil) */}
-      <nav className="hidden md:flex flex-row space-x-2 items-center">
-        <Link href="/research">
-          <span className="bg-emerald-100 hover:bg-purple-100 px-3 py-1 rounded-full shadow-md transition-colors duration-300">
-            {language === "EN" ? "Research" : "Investigacion"}
-          </span>
-        </Link>
-        <Link href="/appointments">
-          <span className="bg-emerald-100 hover:bg-purple-100 px-3 py-1 rounded-full shadow-md transition-colors duration-300">
-            {language === "EN" ? "Appointments" : "Agenda"}
-          </span>
-        </Link>
-        <Link href="/board">
-          <span className="bg-emerald-100 hover:bg-purple-100 px-3 py-1 rounded-full shadow-md transition-colors duration-300">
-            {language === "EN" ? "Board" : "Pizarra"}
-          </span>
-        </Link>
-      </nav>
-
-      {/* Contenedor para el selector de idioma y UserButton (visible en desktop) */}
-      <div className="hidden md:flex items-center space-x-4">
-        {/* Selector de idioma */}
-        <div
-          className="relative cursor-pointer flex items-center"
-          onClick={onLanguageChange}
-          onMouseEnter={() => setIsLanguageHovered(true)}
-          onMouseLeave={() => setIsLanguageHovered(false)}
-        >
-          <span className="text-sm font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 px-3 py-1 rounded-full shadow-md transition-colors duration-300">
-            {language === "EN" ? "EN / ES" : "ES / EN"}
-          </span>
-          <span
-            className={`absolute text-xs top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-semibold text-gray-600 bg-emerald-100 p-2 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${
-              isLanguageHovered
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-2 pointer-events-none"
-            }`}
+     <div className="hidden md:flex items-center ml-auto space-x-4">
+        <nav className="flex flex-row space-x-2 items-center">
+          <Link href="/research">
+            <span className="px-3 py-1 text-gray-600">
+              {language === "EN" ? "Research" : "Investigacion"}
+            </span>
+          </Link>
+          <Link href="/appointments">
+            <span className="px-3 py-1 text-gray-600">
+              {language === "EN" ? "Appointments" : "Agenda"}
+            </span>
+          </Link>
+          <Link href="/board">
+            <span className="px-3 py-1 text-gray-600">
+              {language === "EN" ? "Board" : "Pizarra"}
+            </span>
+          </Link>
+        </nav>
+        {/* Contenedor para el selector de idioma y UserButton (visible en desktop) */}
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Selector de idioma */}
+          <div
+            className="relative cursor-pointer flex items-center"
+            onClick={onLanguageChange}
+            onMouseEnter={() => setIsLanguageHovered(true)}
+            onMouseLeave={() => setIsLanguageHovered(false)}
           >
-            Change to {language === "ES" ? "English" : "Spanish"} site
-          </span>
+            <span className="text-sm font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 px-3 py-1 rounded-full shadow-md transition-colors duration-300">
+              {language === "EN" ? "EN / ES" : "ES / EN"}
+            </span>
+            <span
+              className={`absolute text-xs top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-semibold text-gray-600 bg-emerald-100 p-2 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${
+                isLanguageHovered
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-2 pointer-events-none"
+              }`}
+            >
+              Change to {language === "ES" ? "English" : "Spanish"} site
+            </span>
+          </div>
+          <UserButton />
         </div>
-        <UserButton />
       </div>
 
       {/* Menú Desplegable para Móviles */}
