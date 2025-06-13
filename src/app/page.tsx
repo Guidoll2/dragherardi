@@ -37,9 +37,9 @@
         titleES: "Investigación",
         titleEN: "Research",
         descES:
-          "Con raíces en salud pública, nutrida en medicina indígena Mapuche & desarrollada en UC Labs.",
+          "Con raíces en salud pública, nutrida en medicina rural & desarrollada en UC Labs.",
         descEN:
-          "With roots in public health, nourished in native Mapuche medicine perspective & developed on UC Labs.",
+          "With roots in public health, nourished in rural medicine perspective & developed on UC Labs.",
         ctaES: "Ver más",
         ctaEN: "Learn more",
       },
