@@ -64,27 +64,15 @@ function Turnos() {
       </div>
       {/* Sección de inicio de sesión / calendario */}
 <div className="flex justify-center items-start w-full mt-10 px-4">
-  <SignedOut>
-    <div className="backdrop-blur-md bg-white/60 dark:bg-white/10 shadow-xl rounded-2xl p-8 max-w-md w-full text-center border border-white/30">
-      <p className="mb-6 text-gray-800 dark:text-white text-lg font-medium">
-        {languageFromCookie === "ES"
-          ? "Por favor, iniciá sesión para agendar una reunión."
-          : "Please sign in to schedule a meeting."}
-      </p>
-      <div className="inline-block bg-emerald-200 hover:bg-purple-200 transition-colors duration-500 text-gray-800 px-4 py-2 rounded-lg shadow-md">
-        <SignInButton />
-      </div>
-    </div>
-  </SignedOut>
 
-  <SignedIn>
+
     <div className="flex flex-col items-center justify-center w-full">
       <CalendarComponent language={standardizedLanguage} />
       <div className="w-full flex justify-center p-4">
-        <SignOutButton />
+   
       </div>
     </div>
-  </SignedIn>
+  
 </div>
 
     </div>
