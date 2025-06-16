@@ -3,12 +3,7 @@ import { useState, useEffect, useMemo } from "react"; // Agrega useMemo
 import Cookies from "js-cookie";
 import Header from "../components/header";
 import CalendarComponent from "../components/calendar";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignOutButton,
-} from "@clerk/nextjs";
+
 
 function Turnos() {
   
