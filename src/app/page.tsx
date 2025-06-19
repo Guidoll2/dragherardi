@@ -93,11 +93,10 @@
 
 
 {/* Bordes múltiples con bg-amber-50 */}
-<div className="bg-yellow-950 rounded-2xl p-1 w-fit h-fit mx-auto mt-8">
-  <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
-    <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
-      <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
-        <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
+<div className="hidden md:flex bg-yellow-950 rounded-lg md:p-1 w-fit h-fit mx-auto mt-8">
+  <div className="bg-amber-100 border border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
+    <div className="bg-amber-100 border  border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
+       <div className="bg-amber-100 border  border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
         <div className="bg-amber-100 rounded-2xl p- w-fit h-fit mx-auto">
       <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-amber-50 rounded-2xl shadow-lg ">
         {/* Texto: Título, subtítulo y CTA */}
@@ -109,7 +108,56 @@
         >
           <motion.h1
             variants={fadeIn}
-            className="text-4xl md:text-5xl font-playfair font-semibold text-gray-700"
+            className="text-4xl md:text-5xl font-playfair font-semibold text-gray-700 md:mt-0 mt-4 md:p-0 p-1 md:text-start text-center"
+          >
+            {language === "EN"
+              ? "Understand, respect, and care"
+              : "Comprender, respetar y cuidar"}
+          </motion.h1>
+
+          <motion.p
+            variants={fadeIn}
+            className="text-lg font-inter text-gray-600 md:mt-0 md:p-0 p-1 md:text-start text-center"
+          >
+            {language === "EN"
+              ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
+              : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
+          </motion.p>
+        </motion.div>
+        {/* Imágenes: Hero visuals */}
+        <motion.div
+          variants={fadeIn}
+          className="flex justify-center mt-8 md:mt-0 w-full"
+        >
+          <div className="flex flex-row gap-2 w-full">
+            <Image
+              src="/logoserio.png"
+              alt="Brain Visualization"
+              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg"
+              width={200}
+              height={200}
+            />
+          </div>
+        </motion.div>
+      </section>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div className="md:hidden bg-amber-950 rounded-lg p-0.5 w-fit h-fit mt-24 mb-48 mr-1 ml-1">
+<section className="md:hidden grid grid-cols-1 h-fit items-center mx-auto bg-amber-50 rounded-lg shadow-lg text-center">
+        {/* Texto: Título, subtítulo y CTA SM */}
+        <motion.div
+          className="space-y-4 p-2"
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
+        >
+          <motion.h1
+            variants={fadeIn}
+            className="text-4xl font-poppins font-semibold text-gray-700 mt-2"
           >
             {language === "EN"
               ? "Understand, respect, and care"
@@ -128,25 +176,20 @@
         {/* Imágenes: Hero visuals */}
         <motion.div
           variants={fadeIn}
-          className="flex justify-center mt-8 md:mt-0 w-full"
+          className="flex justify-center w-full mt-4"
         >
           <div className="flex flex-row gap-2 w-full">
             <Image
               src="/logoserio.png"
               alt="Brain Visualization"
-              className="shadow-2xl object-cover w-full h-full rounded-r-lg"
+              className="object-contain h-9/10 w-full rounded-r-lg "
               width={200}
               height={200}
             />
           </div>
         </motion.div>
       </section>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
+      </div>
 
         {/* Sección de servicios */}
 
