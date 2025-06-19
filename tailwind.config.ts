@@ -7,6 +7,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
     extend: {
       colors: {
@@ -56,6 +57,10 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      
+      perspective: { 2000: '2000px' },
+      rotate: { 'y--15': '-15deg', 'y-15': '15deg' },
+    
     },
   },
   plugins: [require("tailwindcss-animate")],

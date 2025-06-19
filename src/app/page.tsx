@@ -90,48 +90,64 @@
 
 
 
-      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-amber-50 rounded-2xl shadow-lg mt-12">
-  {/* Texto: Título, subtítulo y CTA */}
-  <motion.div
-    className="space-y-6 p-4"
-    initial="hidden"
-    animate="visible"
-    variants={stagger}
-  >
-    <motion.h1
-      variants={fadeIn}
-      className="text-4xl md:text-5xl font-playfair font-semibold text-gray-700"
-    >
-      {language === "EN"
-        ? "Understand, respect, and care"
-        : "Comprender, respetar y cuidar"}
-    </motion.h1>
 
-    <motion.p
-      variants={fadeIn}
-      className="text-lg font-inter text-gray-600"
-    >
-      {language === "EN"
-        ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
-        : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
-    </motion.p>
-  </motion.div>
-  {/* Imágenes: Hero visuals */}
-  <motion.div
-    variants={fadeIn}
-    className="flex justify-center mt-8 md:mt-0 w-full" 
-  >
-    <div className="flex flex-row gap-2 w-full"> {/* Y aquí */}
-      <Image
-        src="/logoserio.png"
-        alt="Brain Visualization"
-        className="shadow-2xl object-cover w-full h-full rounded-r-lg" 
-        width={200}
-        height={200}
-      />
+
+{/* Bordes múltiples con bg-amber-50 */}
+<div className="bg-yellow-950 rounded-2xl p-1 w-fit h-fit mx-auto mt-8">
+  <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
+    <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
+      <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
+        <div className="bg-amber-100 border border-gray-400 rounded-2xl p-0.5 w-fit h-fit mx-auto">
+        <div className="bg-amber-100 rounded-2xl p- w-fit h-fit mx-auto">
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-amber-50 rounded-2xl shadow-lg ">
+        {/* Texto: Título, subtítulo y CTA */}
+        <motion.div
+          className="space-y-6 p-4"
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
+        >
+          <motion.h1
+            variants={fadeIn}
+            className="text-4xl md:text-5xl font-playfair font-semibold text-gray-700"
+          >
+            {language === "EN"
+              ? "Understand, respect, and care"
+              : "Comprender, respetar y cuidar"}
+          </motion.h1>
+
+          <motion.p
+            variants={fadeIn}
+            className="text-lg font-inter text-gray-600"
+          >
+            {language === "EN"
+              ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
+              : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
+          </motion.p>
+        </motion.div>
+        {/* Imágenes: Hero visuals */}
+        <motion.div
+          variants={fadeIn}
+          className="flex justify-center mt-8 md:mt-0 w-full"
+        >
+          <div className="flex flex-row gap-2 w-full">
+            <Image
+              src="/logoserio.png"
+              alt="Brain Visualization"
+              className="shadow-2xl object-cover w-full h-full rounded-r-lg"
+              width={200}
+              height={200}
+            />
+          </div>
+        </motion.div>
+      </section>
     </div>
-  </motion.div>
-</section>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
         {/* Sección de servicios */}
 
         <section className="max-w-7xl mx-auto px-4 py-16">
@@ -158,16 +174,16 @@
                     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
                   }}
                 >
-                  <div className="relative h-fit w-full">
-                    <Image
-                      src={card.img}
-                      alt={language === "ES" ? card.titleES : card.titleEN}
-                      width={500}
-                      height={300}
-                      loading="lazy"
-                      className="hover:scale-105 transition-transform duration-700 object-cover"
-                    />
-                  </div>
+           <div className="relative w-full h-[400px] overflow-hidden rounded-t-2xl">
+  <Image
+    src={card.img}
+    alt={language === "ES" ? card.titleES : card.titleEN}
+    fill
+    style={{ objectFit: "cover" }}
+    loading="lazy"
+    className="hover:scale-105 transition-transform duration-700"
+  />
+</div>
                   <div className="p-6 flex flex-col justify-between h-56">
                     <div>
                       <h3 className="text-xl font-medium text-green-500 mb-2">

@@ -34,8 +34,10 @@ function Turnos() {
     <div className="flex flex-col bg-gradient-to-b from-purple-200">
       {/* Selector de idioma */}
    
-   
-   <Header language={language} onLanguageChange={handleLanguageChange} />
+<div className="sticky top-0 z-[100] w-full ">
+  <Header language={languageFromCookie} onLanguageChange={handleLanguageChange} />
+</div>
+
 
       <div className="relative mt-12 w-full  overflow-hidden p-8 sm:p-10 flex flex-col items-start text-start">
         {/* Contenido principal: Título y descripción con foco en la cercanía */}
