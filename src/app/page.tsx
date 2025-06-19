@@ -33,7 +33,7 @@
     const cards = [
       {
         href: "/education",
-        img: "/researchfinal.png",
+        img: "/researchserio.png",
         titleES: "Investigación",
         titleEN: "Research",
         descES:
