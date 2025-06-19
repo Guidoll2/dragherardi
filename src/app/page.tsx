@@ -31,6 +31,18 @@
     };
 
     const cards = [
+        {
+        href: "/turnos",
+        img: "/seria.png",
+        titleES: "Reuniones remotas",
+        titleEN: "Online Appointments",
+        descES:
+          "Como investigadora en salud y medioambiente, me interesa colaborar con quienes necesiten orientación, quieran compartir ideas o conversar sobre temas relacionados. Podemos coordinar una reunión.",
+        descEN:
+        "As a researcher in health and environmental science, I welcome the opportunity to connect with others seeking guidance, collaboration, or meaningful conversation. Feel free to schedule a meeting.",
+        ctaES: "Reservar",
+        ctaEN: "Book now",
+      },
       {
         href: "/education",
         img: "/researchserio.png",
@@ -43,18 +55,7 @@
         ctaES: "Ver más",
         ctaEN: "Learn more",
       },
-      {
-        href: "/turnos",
-        img: "/seria.png",
-        titleES: "Reuniones remotas",
-        titleEN: "Online Appointments",
-        descES:
-          "Como investigadora en salud y medioambiente, me interesa colaborar con quienes necesiten orientación, quieran compartir ideas o conversar sobre temas relacionados. Podemos coordinar una reunión.",
-        descEN:
-        "As a researcher in health and environmental science, I welcome the opportunity to connect with others seeking guidance, collaboration, or meaningful conversation. Feel free to schedule a meeting.",
-        ctaES: "Reservar",
-        ctaEN: "Book now",
-      },
+    
       {
         href: "/board",
         img: "/board.png",
@@ -133,9 +134,9 @@
             <Image
               src="/logoserio.png"
               alt="Brain Visualization"
-              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg"
-              width={200}
-              height={200}
+              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg border-l-2 border-yellow-950"
+              width={500}
+              height={500}
             />
           </div>
         </motion.div>
