@@ -45,7 +45,7 @@
       },
       {
         href: "/turnos",
-        img: "/apoointment.png",
+        img: "/seria.png",
         titleES: "Reuniones remotas",
         titleEN: "Online Appointments",
         descES:
@@ -123,7 +123,7 @@
   >
     <div className="flex flex-row gap-2 w-full"> {/* Y aquí */}
       <Image
-        src="/logotop.png"
+        src="/logoserio.png"
         alt="Brain Visualization"
         className="shadow-2xl object-cover w-full h-full rounded-r-lg" 
         width={200}
