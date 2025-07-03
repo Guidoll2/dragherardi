@@ -1,4 +1,4 @@
-  "use client";
+"use client";
 
   import { useEffect, useState } from "react";
   import Cookies from "js-cookie";
@@ -6,6 +6,8 @@
   import Link from "next/link";
   import { motion } from "framer-motion";
   import Image from "next/image";
+  import { Microscope } from "lucide-react";
+  import { FaChalkboard } from "react-icons/fa";
 
   export default function Home() {
    const [language, setLanguage] = useState("EN");
@@ -30,43 +32,63 @@
       },
     };
 
-    const cards = [
-        {
-        href: "/turnos",
-        img: "/seria.png",
-        titleES: "Reuniones remotas",
-        titleEN: "Online Appointments",
-        descES:
-          "Como investigadora en salud y medioambiente, me interesa colaborar con quienes necesiten orientación, quieran compartir ideas o conversar sobre temas relacionados. Podemos coordinar una reunión.",
-        descEN:
-        "As a researcher in health and environmental science, I welcome the opportunity to connect with others seeking guidance, collaboration, or meaningful conversation. Feel free to schedule a meeting.",
-        ctaES: "Reservar",
-        ctaEN: "Book now",
-      },
-      {
-        href: "/education",
-        img: "/researchserio.png",
-        titleES: "Investigación",
-        titleEN: "Research",
-        descES:
-          "Con raíces en salud pública, nutrida en medicina rural & desarrollada en UC Labs.",
-        descEN:
-          "With roots in public health, nourished in rural medicine perspective & developed on UC Labs.",
-        ctaES: "Ver más",
-        ctaEN: "Learn more",
-      },
-    
-      {
-        href: "/board",
-        img: "/board.png",
-        titleES: "Pizarra Virtual",
-        titleEN: "Virtual Board",
-        descES: "Comparte ideas y experiencias en un espacio dedicado.",
-        descEN: "Share ideas & experiences in a dedicated space.",
-        ctaES: "Participar",
-        ctaEN: "Join in",
-      },
-    ];
+    // Agrega estos SVGs como componentes
+const CalendarIcon = () => (
+  <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth={1.5} fill="none"/>
+    <path stroke="currentColor" strokeWidth={1.5} d="M16 3v4M8 3v4M3 9h18"/>
+  </svg>
+);
+
+
+
+const cards = [
+  {
+    href: "/appointments",
+    icon: <CalendarIcon />,
+    titleES: "Reuniones remotas",
+    titleEN: "Online Appointments",
+    descES:
+      "Como investigadora en salud y medioambiente, me interesa colaborar con quienes necesiten orientación, quieran compartir ideas o conversar sobre temas relacionados. Podemos coordinar una reunión.",
+    descEN:
+      "As a researcher in health and environmental science, I welcome the opportunity to connect with others seeking guidance, collaboration, or meaningful conversation. Feel free to schedule a meeting.",
+    ctaES: "Reservar",
+    ctaEN: "Book now",
+  },
+  {
+    href: "/research",
+    icon: (
+      <Microscope
+        className="mx-auto mb-4 text-green-500"
+        size={64} // Puedes usar 64 para w-16, 128 para w-32, etc.
+        strokeWidth={1.5}
+      />
+    ),
+    titleES: "Investigación",
+    titleEN: "Research",
+    descES:
+      "Con raíces en salud pública, nutrida en medicina rural & desarrollada en UC Labs.",
+    descEN:
+      "With roots in public health, nourished in rural medicine perspective & developed on UC Labs.",
+    ctaES: "Ver más",
+    ctaEN: "Learn more",
+    className: "text-green-500",
+  },
+  {
+    href: "/board",
+    icon: <FaChalkboard 
+    className="mx-auto mb-4 text-green-500"
+    size={64} 
+    strokeWidth={1.5}
+      />,
+    titleES: "Pizarra Virtual",
+    titleEN: "Virtual Board",
+    descES: "Comparte ideas y experiencias en un espacio dedicado.",
+    descEN: "Share ideas & experiences in a dedicated space.",
+    ctaES: "Participar",
+    ctaEN: "Join in",
+  },
+];
 
     // Load language preference from cookies
     useEffect(() => {
@@ -99,7 +121,7 @@
     <div className="bg-amber-100 border  border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
        <div className="bg-amber-100 border  border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
         <div className="bg-amber-100 rounded-2xl p- w-fit h-fit mx-auto">
-      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-amber-50 rounded-2xl shadow-lg ">
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-gradient-to-b from-amber-100 via-amber-50 to-amber-100 rounded-2xl shadow-lg ">
         {/* Texto: Título, subtítulo y CTA */}
         <motion.div
           className="space-y-6 p-4"
@@ -132,9 +154,9 @@
         >
           <div className="flex flex-row gap-2 w-full">
             <Image
-              src="/logoserio.png"
+              src="/zen.png"
               alt="Brain Visualization"
-              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg border-l-2 border-yellow-950"
+              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg border-l-2 border-gray-600"
               width={500}
               height={500}
             />
@@ -180,8 +202,8 @@
           className="flex justify-center w-full mt-4"
         >
           <div className="flex flex-row gap-2 w-full">
-            <Image
-              src="/logoserio.png"
+            <img
+              src="/finish.png"
               alt="Brain Visualization"
               className="object-contain h-9/10 w-full rounded-r-lg "
               width={200}
@@ -218,16 +240,9 @@
                     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
                   }}
                 >
-           <div className="relative w-full h-[400px] overflow-hidden rounded-t-2xl">
-  <Image
-    src={card.img}
-    alt={language === "ES" ? card.titleES : card.titleEN}
-    fill
-    style={{ objectFit: "cover" }}
-    loading="lazy"
-    className="hover:scale-105 transition-transform duration-700"
-  />
-</div>
+                  <div className="flex items-center justify-center h-48 bg-amber-50 rounded-t-2xl">
+                    {card.icon}
+                  </div>
                   <div className="p-6 flex flex-col justify-between h-56">
                     <div>
                       <h3 className="text-xl font-medium text-green-500 mb-2">

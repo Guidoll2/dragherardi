@@ -172,11 +172,7 @@ export default function ResearchPage() {
             : "For more details on my research, I invite you to visit my Google Scholar profile."}
         </p>
         <SiGooglescholar size={48}/></div>
-          <img
-          src="/research.png" // Ruta a tu imagen
-          alt={language === "ES" ? "Ilustración de la investigación de Candelaria" : "Illustration of Candelaria's research"}
-          className="w-24 h-24 mx-auto object-cover rounded-full shadow-2xl" // Tamaño máximo para que no sea abrumador
-        />
+        
       </section>
     </main>
   );

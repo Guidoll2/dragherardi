@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { esMX } from "@clerk/localizations";
-
 import { Toaster } from 'sonner';
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { Poppins } from "next/font/google";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
   subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
   title: "Dra.Gherardi A",
-  description: "Salud - Health",
+  description: "Enviromental Health",
 };
 
 export default function RootLayout({
@@ -28,11 +24,9 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={esMX}>
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+   <body className={`${poppins.variable} antialiased`}>
           {children}
-         <Toaster position="bottom-left" richColors />
+          <Toaster position="bottom-left" richColors />
         </body>
       </html>
     </ClerkProvider>
