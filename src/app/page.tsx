@@ -156,7 +156,7 @@ const cards = [
             <Image
               src="/lapiz.png"
               alt="Brain Visualization"
-              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg border-l-2 border-gray-600"
+              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg"
               width={1000}
               height={1000}
             />
