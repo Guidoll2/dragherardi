@@ -202,8 +202,8 @@ const cards = [
           className="flex justify-center w-full mt-4"
         >
           <div className="flex flex-row gap-2 w-full">
-            <img
-              src="/finish.png"
+            <Image
+              src="/zen.png"
               alt="Brain Visualization"
               className="object-contain h-9/10 w-full rounded-r-lg "
               width={200}
