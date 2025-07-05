@@ -154,7 +154,7 @@ const cards = [
         >
           <div className="flex flex-row gap-2 w-full">
             <Image
-              src="/zen.png"
+              src="/lapiz.png"
               alt="Brain Visualization"
               className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg border-l-2 border-gray-600"
               width={1000}
@@ -203,7 +203,7 @@ const cards = [
         >
           <div className="flex flex-row gap-2 w-full">
             <Image
-              src="/zen.png"
+              src="/lapiz.png"
               alt="Brain Visualization"
               className="object-contain h-9/10 w-full rounded-r-lg "
               width={1000}
