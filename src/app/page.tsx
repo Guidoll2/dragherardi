@@ -157,8 +157,8 @@ const cards = [
               src="/zen.png"
               alt="Brain Visualization"
               className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg border-l-2 border-gray-600"
-              width={500}
-              height={500}
+              width={1000}
+              height={1000}
             />
           </div>
         </motion.div>
@@ -206,8 +206,8 @@ const cards = [
               src="/zen.png"
               alt="Brain Visualization"
               className="object-contain h-9/10 w-full rounded-r-lg "
-              width={200}
-              height={200}
+              width={1000}
+              height={1000}
             />
           </div>
         </motion.div>
