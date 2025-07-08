@@ -6,8 +6,6 @@
   import Link from "next/link";
   import { motion } from "framer-motion";
   import Image from "next/image";
-  import { Microscope } from "lucide-react";
-  import { FaChalkboard } from "react-icons/fa";
 
   export default function Home() {
    const [language, setLanguage] = useState("EN");
@@ -32,20 +30,11 @@
       },
     };
 
-    // Agrega estos SVGs como componentes
-const CalendarIcon = () => (
-  <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth={1.5} fill="none"/>
-    <path stroke="currentColor" strokeWidth={1.5} d="M16 3v4M8 3v4M3 9h18"/>
-  </svg>
-);
-
-
-
 const cards = [
   {
     href: "/appointments",
-    icon: <CalendarIcon />,
+    imageSrc: "/appointzen2.png", // Cambia esta ruta por tu imagen
+    imageAlt: "Online Appointments",
     titleES: "Reuniones remotas",
     titleEN: "Online Appointments",
     descES:
@@ -57,13 +46,8 @@ const cards = [
   },
   {
     href: "/research",
-    icon: (
-      <Microscope
-        className="mx-auto mb-4 text-green-500"
-        size={64} // Puedes usar 64 para w-16, 128 para w-32, etc.
-        strokeWidth={1.5}
-      />
-    ),
+    imageSrc: "/researchzen2.png", // Cambia esta ruta por tu imagen
+    imageAlt: "Research",
     titleES: "Investigación",
     titleEN: "Research",
     descES:
@@ -72,15 +56,11 @@ const cards = [
       "With roots in public health, nourished in rural medicine perspective & developed on UC Labs.",
     ctaES: "Ver más",
     ctaEN: "Learn more",
-    className: "text-green-500",
   },
   {
     href: "/board",
-    icon: <FaChalkboard 
-    className="mx-auto mb-4 text-green-500"
-    size={64} 
-    strokeWidth={1.5}
-      />,
+    imageSrc: "/boardzen2.png", // Cambia esta ruta por tu imagen
+    imageAlt: "Virtual Board",
     titleES: "Pizarra Virtual",
     titleEN: "Virtual Board",
     descES: "Comparte ideas y experiencias en un espacio dedicado.",
@@ -116,102 +96,97 @@ const cards = [
 
 
 {/* Bordes múltiples con bg-amber-50 */}
-<div className="hidden md:flex bg-yellow-950 rounded-lg md:p-1 w-fit h-fit mx-auto mt-8">
-  <div className="bg-amber-100 border border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
-    <div className="bg-amber-100 border  border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
-       <div className="bg-amber-100 border  border-gray-400 rounded-lg md:p-0.5 w-fit h-fit mx-auto">
-        <div className="bg-amber-100 rounded-2xl p- w-fit h-fit mx-auto">
-      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-gradient-to-b from-amber-100 via-amber-50 to-amber-100 rounded-2xl shadow-lg ">
-        {/* Texto: Título, subtítulo y CTA */}
-        <motion.div
-          className="space-y-6 p-4"
-          initial="hidden"
-          animate="visible"
-          variants={stagger}
-        >
-          <motion.h1
-            variants={fadeIn}
-            className="text-4xl md:text-5xl font-playfair font-semibold text-gray-700 md:mt-0 mt-4 md:p-0 p-1 md:text-start text-center"
-          >
-            {language === "EN"
-              ? "Understand, respect, and care"
-              : "Comprender, respetar y cuidar"}
-          </motion.h1>
 
-          <motion.p
-            variants={fadeIn}
-            className="text-lg font-inter text-gray-600 md:mt-0 md:p-0 p-1 md:text-start text-center"
-          >
-            {language === "EN"
-              ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
-              : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
-          </motion.p>
-        </motion.div>
-        {/* Imágenes: Hero visuals */}
+      <div className="hidden md:block bg-amber-100 rounded-2xl p- w-fit h-fit mx-auto mt-12">
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-gradient-to-b from-amber-100 via-amber-50 to-amber-100 rounded-2xl shadow-lg ">
+        {/* Imagen como fondo con texto superpuesto */}
         <motion.div
           variants={fadeIn}
-          className="flex justify-center mt-8 md:mt-0 w-full"
+          className="relative col-span-2 flex justify-center mt-8 md:mt-0 w-full"
         >
-          <div className="flex flex-row gap-2 w-full">
+          <div className="relative w-full max-w-4xl">
             <Image
-              src="/lapiz.png"
-              alt="Brain Visualization"
-              className="shadow-2xl object-contain w-full h-3/4 md:h-full rounded-r-lg"
+              src="/bookeado2.png"
+              alt="Book with content"
+              className="w-full h-auto object-contain shadow-2xl rounded-lg"
               width={1000}
               height={1000}
             />
+            
+            {/* Texto superpuesto en la página izquierda del libro */}
+            <motion.div
+              className="absolute top-[15%] left-[8%] w-[35%] h-[70%] flex flex-col justify-center px-4"
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+            >
+              <motion.h1
+                variants={fadeIn}
+                className="text-2xl md:text-4xl font-playfair font-semibold text-gray-800 mb-4 leading-tight"
+              >
+                {language === "EN"
+                  ? "Understand, respect, and care"
+                  : "Comprender, respetar y cuidar"}
+              </motion.h1>
+
+              <motion.p
+                variants={fadeIn}
+                className="text-sm md:text-base font-inter text-gray-700 leading-relaxed"
+              >
+                {language === "EN"
+                  ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
+                  : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
+              </motion.p>
+            </motion.div>
           </div>
         </motion.div>
       </section>
     </div>
-  </div>
-</div>
-</div>
-</div>
 
-<div className="md:hidden bg-amber-950 rounded-lg p-0.5 w-fit h-fit mt-24 mb-48 mr-1 ml-1">
-<section className="md:hidden grid grid-cols-1 h-fit items-center mx-auto bg-amber-50 rounded-lg shadow-lg text-center">
-        {/* Texto: Título, subtítulo y CTA SM */}
+
+<div className="md:hidden mt-24 mb-48 mx-1">
+        {/* Contenedor con la imagen de fondo y texto superpuesto */}
         <motion.div
-          className="space-y-4 p-2"
+          className="relative w-full"
+          variants={fadeIn}
           initial="hidden"
           animate="visible"
-          variants={stagger}
         >
-          <motion.h1
-            variants={fadeIn}
-            className="text-4xl font-poppins font-semibold text-gray-700 mt-2"
+          {/* Imagen del libro */}
+          <Image
+            src="/bookeado2.png"
+            alt="Book with content"
+            className="w-full  object-contain"
+            width={1000}
+            height={1000}
+          />
+          
+          {/* Texto superpuesto en la página izquierda del libro */}
+          <motion.div
+            className="absolute top-[15%] left-[8%] w-[35%] h-[70%] flex flex-col justify-center px-2"
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
           >
-            {language === "EN"
-              ? "Understand, respect, and care"
-              : "Comprender, respetar y cuidar"}
-          </motion.h1>
+            <motion.h1
+              variants={fadeIn}
+              className="text-lg font-poppins font-semibold text-gray-800 mb-2 leading-tight"
+            >
+              {language === "EN"
+                ? "Understand, respect, and care"
+                : "Comprender, respetar y cuidar"}
+            </motion.h1>
 
-          <motion.p
-            variants={fadeIn}
-            className="text-lg font-inter text-gray-600"
-          >
-            {language === "EN"
-              ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
-              : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
-          </motion.p>
+            <motion.p
+              variants={fadeIn}
+              className="text-xs font-inter text-gray-700 leading-relaxed"
+            >
+              {language === "EN"
+                ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
+                : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
+            </motion.p>
+          </motion.div>
         </motion.div>
-        {/* Imágenes: Hero visuals */}
-        <motion.div
-          variants={fadeIn}
-          className="flex justify-center w-full mt-4"
-        >
-          <div className="flex flex-row gap-2 w-full">
-            <Image
-              src="/lapiz.png"
-              alt="Brain Visualization"
-              className="object-contain h-9/10 w-full rounded-r-lg "
-              width={1000}
-              height={1000}
-            />
-          </div>
-        </motion.div>
-      </section>
       </div>
 
         {/* Sección de servicios */}
@@ -231,17 +206,34 @@ const cards = [
               visible: { transition: { staggerChildren: 0.2 } },
             }}
           >
-            {cards.map((card, i) => (
-              <Link key={i} href={card.href} passHref>
-                <motion.a
-                  className="block bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition"
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-                  }}
-                >
-                  <div className="flex items-center justify-center h-48 bg-amber-50 rounded-t-2xl">
-                    {card.icon}
+            {cards.map((card, i) => {
+              // Clases específicas para cada imagen
+              let imageClasses = "w-full h-full object-cover";
+              
+              if (i === 0) { // Appointments - imagen más alejada
+                imageClasses += " transform translate-y-0";
+              } else if (i === 1) { // Research - imagen hacia arriba
+                imageClasses += " transform -translate-y-0";
+              }
+              // Board (i === 2) mantiene posición normal de imagen
+              
+              return (
+                <Link key={i} href={card.href} passHref>
+                  <motion.a
+                    className="block bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition"
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                    }}
+                  >
+                  <div className="relative h-48 bg-amber-50 rounded-t-2xl overflow-hidden">
+                    <Image
+                      src={card.imageSrc}
+                      alt={card.imageAlt}
+                      width={800}
+                      height={800}
+                      className={imageClasses}
+                    />
                   </div>
                   <div className="p-6 flex flex-col justify-between h-56">
                     <div>
@@ -258,7 +250,8 @@ const cards = [
                   </div>
                 </motion.a>
               </Link>
-            ))}
+              );
+            })}
           </motion.div>
         </section>
         <footer className="w-full bg-[#D5E8D4] py-8 text-center text-[#5D8D7C] border-t border-[#5D8D7C]">
