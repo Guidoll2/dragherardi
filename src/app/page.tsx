@@ -33,7 +33,7 @@
 const cards = [
   {
     href: "/appointments",
-    imageSrc: "/appointzen2.png", // Cambia esta ruta por tu imagen
+    imageSrc: "/calendarsora.webp", // Cambia esta ruta por tu imagen
     imageAlt: "Online Appointments",
     titleES: "Reuniones remotas",
     titleEN: "Online Appointments",
@@ -46,7 +46,7 @@ const cards = [
   },
   {
     href: "/research",
-    imageSrc: "/researchzen2.png", // Cambia esta ruta por tu imagen
+    imageSrc: "/researchsora.webp", // Cambia esta ruta por tu imagen
     imageAlt: "Research",
     titleES: "Investigación",
     titleEN: "Research",
@@ -257,8 +257,8 @@ const cards = [
         <footer className="w-full bg-[#D5E8D4] py-8 text-center text-[#5D8D7C] border-t border-[#5D8D7C]">
     <p className="text-sm">
         {language === "EN" ? "Connect: " : "Conecta: "}
-        <Link href="mailto:dragherardi@gmail.com" className="hover:underline font-semibold">
-            dragherardi@gmail.com
+        <Link href="mailto:candegherardi@berkeley.edu" className="hover:underline font-semibold">
+            candegherardi@berkeley.edu
         </Link>
     </p>
     <p className="text-xs mt-2">
