@@ -51,9 +51,9 @@ const cards = [
     titleES: "Investigación",
     titleEN: "Research",
     descES:
-      "Con raíces en salud pública, nutrida en medicina rural & desarrollada en UC Labs.",
+      "Con raíces en salud pública, nutrida en medicina rural y natia. Desarrollada en UC Labs.",
     descEN:
-      "With roots in public health, nourished in rural medicine perspective & developed on UC Labs.",
+      "With roots in public health, nourished in rural and native medicine perspective. Developed on UC Labs.",
     ctaES: "Ver más",
     ctaEN: "Learn more",
   },
@@ -97,8 +97,8 @@ const cards = [
 
 {/* Bordes múltiples con bg-amber-50 */}
 
-      <div className="hidden md:block bg-amber-100 rounded-2xl p- w-fit h-fit mx-auto mt-12">
-      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto bg-gradient-to-b from-amber-100 via-amber-50 to-amber-100 rounded-2xl shadow-lg ">
+      <div className="hidden md:block w-fit h-fit mx-auto mt-12">
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto">
         {/* Imagen como fondo con texto superpuesto */}
         <motion.div
           variants={fadeIn}
@@ -106,9 +106,9 @@ const cards = [
         >
           <div className="relative w-full max-w-4xl">
             <Image
-              src="/bookeado2.png"
+              src="/soracortado2.png"
               alt="Book with content"
-              className="w-full h-auto object-contain shadow-2xl rounded-lg"
+              className="w-full h-auto object-contain"
               width={1000}
               height={1000}
             />
