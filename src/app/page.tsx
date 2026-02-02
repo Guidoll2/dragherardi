@@ -32,17 +32,17 @@
 
 const cards = [
   {
-    href: "/appointments",
+    href: "/education",
     imageSrc: "/calendarsora.webp", // Cambia esta ruta por tu imagen
-    imageAlt: "Online Appointments",
-    titleES: "Reuniones remotas",
-    titleEN: "Online Appointments",
+    imageAlt: "Remote Education",
+    titleES: "Educación remota",
+    titleEN: "Remote Education",
     descES:
-      "Como investigadora en salud y medioambiente, me interesa colaborar con quienes necesiten orientación, quieran compartir ideas o conversar sobre temas relacionados. Podemos coordinar una reunión.",
+      "Como médica y educadora, ofrezco un espacio de aprendizaje virtual para estudiantes universitarios. Accede a materiales, clases en vivo y recursos especializados en medicina y ciencias de la salud.",
     descEN:
-      "As a researcher in health and environmental science, I welcome the opportunity to connect with others seeking guidance, collaboration, or meaningful conversation. Feel free to schedule a meeting.",
-    ctaES: "Reservar",
-    ctaEN: "Book now",
+      "As a physician and educator, I offer a virtual learning space for university students. Access materials, live classes, and specialized resources in medicine and health sciences.",
+    ctaES: "Acceder",
+    ctaEN: "Access",
   },
   {
     href: "/research",
@@ -91,103 +91,89 @@ const cards = [
           <Header language={language} onLanguageChange={handleLanguageChange} />
         </div>
 
-
-
-
-
-{/* Bordes múltiples con bg-amber-50 */}
-
-      <div className="hidden md:block w-fit h-fit mx-auto mt-12">
-      <section className="grid grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto">
-        {/* Imagen como fondo con texto superpuesto */}
-        <motion.div
-          variants={fadeIn}
-          className="relative col-span-2 flex justify-center mt-8 md:mt-0 w-full"
-        >
-          <div className="relative w-full max-w-4xl">
-            <Image
-              src="/soracortado2.png"
-              alt="Book with content"
-              className="w-full h-auto object-contain"
-              width={1000}
-              height={1000}
-            />
+        {/* 
+          HERO SECTION
+          Editorial layout with text-left, image-right composition
+          Design philosophy: Apple-like calm confidence, scientific credibility, generous whitespace
+        */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
             
-            {/* Texto superpuesto en la página izquierda del libro */}
+            {/* LEFT: Content */}
             <motion.div
-              className="absolute top-[15%] left-[8%] w-[35%] h-[70%] flex flex-col justify-center px-4"
               initial="hidden"
               animate="visible"
               variants={stagger}
+              className="space-y-6 md:space-y-8"
             >
+              {/* Headline: bold but not aggressive */}
               <motion.h1
                 variants={fadeIn}
-                className="text-2xl md:text-4xl font-playfair font-semibold text-gray-800 mb-4 leading-tight"
+                className="text-3xl md:text-5xl lg:text-6xl font-semibold text-gray-900 leading-tight tracking-tight"
               >
                 {language === "EN"
-                  ? "Understand, respect, and care"
-                  : "Comprender, respetar y cuidar"}
+                  ? "Medicine, Environment, and Human Health"
+                  : "Medicina, Medioambiente y Salud Humana"}
               </motion.h1>
 
+              {/* Subheadline: lighter, neutral gray-blue tone */}
               <motion.p
                 variants={fadeIn}
-                className="text-sm md:text-base font-inter text-gray-700 leading-relaxed"
+                className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-xl"
               >
                 {language === "EN"
-                  ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
-                  : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
+                  ? "Medical Doctor with clinical experience in underserved communities and a focus on environmental and neurological health. Based in Barcelona, collaborating in research and public health initiatives."
+                  : "Médica con experiencia clínica en comunidades desatendidas y enfoque en salud ambiental y neurológica. Basada en Barcelona, colaborando en investigación e iniciativas de salud pública."}
               </motion.p>
+
+              {/* CTA: minimal, secondary, optional */}
+              <motion.div variants={fadeIn}>
+                <Link
+                  href="/research"
+                  className="inline-flex items-center gap-2 text-[#5D8D7C] hover:text-gray-900 font-medium transition-colors duration-200 group"
+                >
+                  <span>{language === "EN" ? "Explore Research" : "Explorar Investigación"}</span>
+                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                </Link>
+              </motion.div>
             </motion.div>
+
+            {/* RIGHT: Image with subtle treatment */}
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
+            >
+              {/* 
+                Image presentation adjustments applied via CSS:
+                - Desaturated slightly
+                - Reduced contrast
+                - Subtle matte / soft-light effect
+                - Low opacity to fade symbolic elements
+              */}
+              <div className="relative w-full h-full rounded-lg overflow-hidden">
+                <Image
+                  src="/Hero.png"
+                  alt="Dr. Candelaria Gherardi - Environmental Health Research"
+                  fill
+                  className="object-cover"
+                  style={{
+                    filter: 'saturate(0.7) contrast(0.85) brightness(1.05)',
+                    opacity: 0.85,
+                  }}
+                  priority
+                />
+                {/* Subtle overlay for matte effect */}
+                <div 
+                  className="absolute inset-0 bg-white/10 mix-blend-soft-light pointer-events-none"
+                  aria-hidden="true"
+                />
+              </div>
+            </motion.div>
+
           </div>
-        </motion.div>
-      </section>
-    </div>
-
-
-<div className="md:hidden mt-24 mb-48 mx-1">
-        {/* Contenedor con la imagen de fondo y texto superpuesto */}
-        <motion.div
-          className="relative w-full"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Imagen del libro */}
-          <Image
-            src="/bookeado2.png"
-            alt="Book with content"
-            className="w-full  object-contain"
-            width={1000}
-            height={1000}
-          />
-          
-          {/* Texto superpuesto en la página izquierda del libro */}
-          <motion.div
-            className="absolute top-[15%] left-[8%] w-[35%] h-[70%] flex flex-col justify-center px-2"
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-          >
-            <motion.h1
-              variants={fadeIn}
-              className="text-lg font-poppins font-semibold text-gray-800 mb-2 leading-tight"
-            >
-              {language === "EN"
-                ? "Understand, respect, and care"
-                : "Comprender, respetar y cuidar"}
-            </motion.h1>
-
-            <motion.p
-              variants={fadeIn}
-              className="text-xs font-inter text-gray-700 leading-relaxed"
-            >
-              {language === "EN"
-                ? "Medical Doctor & PhD Student in Environmental Health Science at UC Berkeley."
-                : "Medica estudiante de PhD en Ciencias de la Salud y Medioambiente en UC Berkeley."}
-            </motion.p>
-          </motion.div>
-        </motion.div>
-      </div>
+        </section>
 
         {/* Sección de servicios */}
 
@@ -257,8 +243,8 @@ const cards = [
         <footer className="w-full bg-[#D5E8D4] py-8 text-center text-[#5D8D7C] border-t border-[#5D8D7C]">
     <p className="text-sm">
         {language === "EN" ? "Connect: " : "Conecta: "}
-        <Link href="mailto:candegherardi@berkeley.edu" className="hover:underline font-semibold">
-            candegherardi@berkeley.edu
+        <Link href="mailto:candegherardi@gmail.com" className="hover:underline font-semibold">
+            candegherardi@gmail.com
         </Link>
     </p>
     <p className="text-xs mt-2">

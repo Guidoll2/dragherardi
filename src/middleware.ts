@@ -1,6 +1,24 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export default clerkMiddleware();
+const isPublicRoute = createRouteMatcher([
+  '/',
+  '/sign-in(.*)',
+  '/sign-up(.*)',
+  '/research',
+  '/board',
+  '/appointments',
+  '/api/webhook(.*)',
+]);
+
+const isProtectedRoute = createRouteMatcher([
+  '/education(.*)',
+]);
+
+export default clerkMiddleware(async (auth, request) => {
+  if (isProtectedRoute(request)) {
+    await auth.protect();
+  }
+});
 
 export const config = {
   matcher: [
