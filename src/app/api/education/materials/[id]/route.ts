@@ -5,7 +5,7 @@ import EducationalMaterialModel from "@/mongoDB/models/educationalMaterial";
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const userInfo = await getCurrentUserInfo();
@@ -14,7 +14,7 @@ export async function PUT(
       return NextResponse.json({ error: "No autorizado" }, { status: 403 });
     }
 
-    const materialId = params.id;
+    const { id: materialId } = await params;
     const body = await req.json();
     const { title, description, type, content, fileUrl, externalLink, order } = body;
 
@@ -47,7 +47,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const userInfo = await getCurrentUserInfo();
@@ -56,7 +56,7 @@ export async function DELETE(
       return NextResponse.json({ error: "No autorizado" }, { status: 403 });
     }
 
-    const materialId = params.id;
+    const { id: materialId } = await params;
 
     await connectToDatabase();
 

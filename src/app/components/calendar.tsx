@@ -130,7 +130,7 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
       t("calendar.saturday").substring(0, 3),
       t("calendar.sunday").substring(0, 3),
     ]
-  }, [language, t])
+  }, [t])
 
   const allPossibleTimeSlots = useMemo(() => {
     const slots = []

@@ -6,7 +6,6 @@ import Header from "@/app/components/header";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
-  Upload,
   FileText,
   FileSpreadsheet,
   FileImage,
@@ -17,7 +16,6 @@ import {
   Calendar,
   Users,
   Trash2,
-  Eye,
   Edit,
   Lock,
 } from "lucide-react";
@@ -51,7 +49,7 @@ export default function ClassroomManagement() {
   const classroomId = params.id as string;
   
   const [loading, setLoading] = useState(true);
-  const [classroom, setClassroom] = useState<any>(null);
+  const [classroom, setClassroom] = useState<{ _id: string; name: string; description: string; students: string[]; isActive: boolean } | null>(null);
   const [materials, setMaterials] = useState<Material[]>([]);
   const [sessions, setSessions] = useState<Session[]>([]);
   const [activeTab, setActiveTab] = useState<"materials" | "sessions" | "students">("materials");
@@ -82,6 +80,7 @@ export default function ClassroomManagement() {
 
   useEffect(() => {
     loadClassroomData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [classroomId]);
 
   async function loadClassroomData() {
@@ -89,7 +88,7 @@ export default function ClassroomManagement() {
       // Cargar datos del aula
       const classroomRes = await fetch(`/api/education/classrooms`);
       const classroomData = await classroomRes.json();
-      const foundClassroom = classroomData.classrooms.find((c: any) => c._id === classroomId);
+      const foundClassroom = classroomData.classrooms.find((c: { _id: string }) => c._id === classroomId);
       setClassroom(foundClassroom);
 
       // Cargar materiales
@@ -182,7 +181,7 @@ export default function ClassroomManagement() {
     }
   }
 
-  const materialTypeIcons: { [key: string]: any } = {
+  const materialTypeIcons: { [key: string]: React.ComponentType<{ className?: string }> } = {
     text: FileText,
     pdf: FileText,
     word: FileText,

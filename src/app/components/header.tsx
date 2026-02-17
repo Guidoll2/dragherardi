@@ -1,11 +1,10 @@
 // components/header.tsx
 "use client";
 
-import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useState } from "react";
-// Si tienes un componente AnimatedIcon, asegúrate de que sea compatible con SSR si es necesario
-// import AnimatedIcon from "./animatedIcons";
+import { useSession } from "next-auth/react";
+import AdminNotifications from "./AdminNotifications";
 
 type HeaderProps = {
   language: string;
@@ -14,7 +13,9 @@ type HeaderProps = {
 
 export default function Header({ language, onLanguageChange }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLanguageHovered, setIsLanguageHovered] = useState(false); // Renombrado para claridad
+  const [isLanguageHovered, setIsLanguageHovered] = useState(false);
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.role === "admin";
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -74,17 +75,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
               {language === "EN" ? "Research" : "Investigacion"}
             </span>
           </Link>
-          <Link href="/appointments">
-            <span className="px-3 py-1 text-gray-600">
-              {language === "EN" ? "Appointments" : "Agenda"}
-            </span>
-          </Link>
-          <Link href="/board">
-            <span className="px-3 py-1 text-gray-600">
-              {language === "EN" ? "Board" : "Pizarra"}
-            </span>
-          </Link>
-        </nav>
+              </nav>
         {/* Contenedor para el selector de idioma y UserButton (visible en desktop) */}
         <div className="hidden md:flex items-center space-x-4">
           {/* Selector de idioma */}
@@ -94,7 +85,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
             onMouseEnter={() => setIsLanguageHovered(true)}
             onMouseLeave={() => setIsLanguageHovered(false)}
           >
-            <span className="text-sm font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 px-3 py-1 rounded-full shadow-md transition-colors duration-300">
+            <span className="text-sm font-semibold text-gray-700 bg-emerald-200 hover:bg-[#F5EDE0] px-3 py-1 rounded-full shadow-md transition-colors duration-300">
               {language === "EN" ? "EN / ES" : "ES / EN"}
             </span>
             <span
@@ -107,7 +98,10 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
               Change to {language === "ES" ? "English" : "Spanish"} site
             </span>
           </div>
-          <UserButton />
+
+          {/* Admin Notifications */}
+          {isAdmin && <AdminNotifications language={language} />}
+     
         </div>
       </div>
 
@@ -120,20 +114,11 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
       >
         <nav className="flex flex-col items-center space-y-4">
           <Link href="/research" onClick={toggleMenu}>
-            <span className="font-semibold text-gray-800 hover:text-purple-600 transition-colors duration-300">
+            <span className="font-semibold text-gray-800 hover:text-[#A08C6A] transition-colors duration-300">
               {language === "EN" ? "Research" : "Investigacion"}
             </span>
           </Link>
-          <Link href="/appointments" onClick={toggleMenu}>
-            <span className="font-semibold text-gray-800 hover:text-purple-600 transition-colors duration-300">
-              {language === "EN" ? "Appointments" : "Agenda"}
-            </span>
-          </Link>
-          <Link href="/board" onClick={toggleMenu}>
-            <span className="font-semibold text-gray-800 hover:text-purple-600 transition-colors duration-300">
-              {language === "EN" ? "Board" : "Pizarra"}
-            </span>
-          </Link>
+                  
           <hr className="w-1/2 border-gray-200" /> {/* Separador */}
           {/* Selector de idioma dentro del menú móvil */}
           <div
@@ -143,12 +128,12 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
               toggleMenu(); // Cierra el menú al cambiar el idioma
             }}
           >
-            <span className="text-sm font-semibold text-gray-700 bg-emerald-200 hover:bg-purple-200 px-3 py-1 rounded-full shadow-md transition-colors duration-300">
+            <span className="text-sm font-semibold text-gray-700 bg-emerald-200 hover:bg-[#F5EDE0] px-3 py-1 rounded-full shadow-md transition-colors duration-300">
               {language === "EN" ? "EN / ES" : "ES / EN"}
             </span>
           </div>
           <div className="mt-4">
-            <UserButton afterSignOutUrl="/" /> {/* Asegúrate de redirigir después del logout */}
+      
           </div>
         </nav>
       </div>

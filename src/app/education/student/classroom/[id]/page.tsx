@@ -12,9 +12,7 @@ import {
   Link as LinkIcon,
   Video,
   Calendar,
-  Download,
   ExternalLink,
-  CheckCircle,
   Clock,
   Lock,
   X,
@@ -49,7 +47,7 @@ export default function StudentClassroomView() {
   const classroomId = params.id as string;
 
   const [loading, setLoading] = useState(true);
-  const [classroom, setClassroom] = useState<any>(null);
+  const [classroom, setClassroom] = useState<{ _id: string; name: string; description: string; instructorName?: string } | null>(null);
   const [materials, setMaterials] = useState<Material[]>([]);
   const [sessions, setSessions] = useState<Session[]>([]);
   const [activeTab, setActiveTab] = useState<"materials" | "sessions">("materials");
@@ -61,13 +59,14 @@ export default function StudentClassroomView() {
 
   useEffect(() => {
     loadClassroomData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [classroomId]);
 
   async function loadClassroomData() {
     try {
       const classroomRes = await fetch(`/api/education/classrooms`);
       const classroomData = await classroomRes.json();
-      const foundClassroom = classroomData.classrooms.find((c: any) => c._id === classroomId);
+      const foundClassroom = classroomData.classrooms.find((c: { _id: string }) => c._id === classroomId);
       setClassroom(foundClassroom);
 
       const materialsRes = await fetch(`/api/education/materials?classroomId=${classroomId}`);
@@ -84,7 +83,7 @@ export default function StudentClassroomView() {
     }
   }
 
-  const materialTypeIcons: { [key: string]: any } = {
+  const materialTypeIcons: { [key: string]: React.ComponentType<{ className?: string }> } = {
     text: FileText,
     pdf: FileText,
     word: FileText,

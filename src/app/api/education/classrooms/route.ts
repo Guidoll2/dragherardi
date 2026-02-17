@@ -3,7 +3,7 @@ import { getCurrentUserInfo } from "@/lib/utils/auth";
 import connectToDatabase from "@/mongoDB/db";
 import ClassroomModel from "@/mongoDB/models/classroom";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const userInfo = await getCurrentUserInfo();
 

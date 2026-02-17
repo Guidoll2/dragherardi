@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@/app/components/header";
 import { motion } from "framer-motion";
-import { BookOpen, Video, Users, FileText, Search, Plus, Shield } from "lucide-react";
+import { BookOpen, Video, Users, FileText, Search, Shield } from "lucide-react";
 
 interface Classroom {
   _id: string;
@@ -20,17 +20,17 @@ interface Classroom {
 export default function StudentDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [classrooms, setClassrooms] = useState<Classroom[]>([]);
+  const [, setClassrooms] = useState<Classroom[]>([]);
   const [enrolledClassrooms, setEnrolledClassrooms] = useState<Classroom[]>([]);
   const [availableClassrooms, setAvailableClassrooms] = useState<Classroom[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [language, setLanguage] = useState("ES");
-  const [userId, setUserId] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     checkAuth();
     loadClassrooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function checkAuth() {
@@ -56,12 +56,11 @@ export default function StudentDashboard() {
       const allClassrooms = data.classrooms || [];
       
       // Obtener info del usuario
-      const userRes = await fetch("/api/education/role");
-      const userData = await userRes.json();
+      await fetch("/api/education/role");
       
       // Para simular, ya que no tenemos el ID del usuario en el array de students aún
       // En producción, deberías tener el clerk user ID en el array de students
-      const enrolled = allClassrooms.filter((c: Classroom) => false); // Por ahora vacío
+      const enrolled: Classroom[] = []; // Por ahora vacío
       const available = allClassrooms.filter((c: Classroom) => c.isActive);
       
       setEnrolledClassrooms(enrolled);

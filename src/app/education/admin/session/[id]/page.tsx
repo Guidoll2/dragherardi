@@ -32,7 +32,7 @@ export default function AdminSessionManagement() {
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [newMessage, setNewMessage] = useState("");
-  const [userName, setUserName] = useState("Dra. Gherardi");
+  const [, setUserName] = useState("Dra. Gherardi");
   const [showChat, setShowChat] = useState(true);
   const [sessionLive, setSessionLive] = useState(false);
   const [streamUrl, setStreamUrl] = useState("");
@@ -43,6 +43,7 @@ export default function AdminSessionManagement() {
     loadUserInfo();
     const interval = setInterval(loadMessages, 3000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId]);
 
   useEffect(() => {
@@ -181,7 +182,7 @@ export default function AdminSessionManagement() {
               ) : (
                 <div className="bg-gray-800 rounded-lg p-6 mb-4">
                   <p className="text-gray-400 text-sm">
-                    No hay stream configurado. Haz clic en "Configurar Stream" para añadir la URL.
+                    No hay stream configurado. Haz clic en &quot;Configurar Stream&quot; para añadir la URL.
                   </p>
                 </div>
               )}

@@ -11,7 +11,6 @@ import {
   FileText, 
   Plus,
   Upload,
-  Link as LinkIcon,
   Calendar,
   Settings,
   Eye
@@ -37,6 +36,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     checkAuth();
     loadClassrooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function checkAuth() {

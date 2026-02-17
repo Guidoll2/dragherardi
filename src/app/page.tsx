@@ -30,45 +30,7 @@
       },
     };
 
-const cards = [
-  {
-    href: "/education",
-    imageSrc: "/calendarsora.webp", // Cambia esta ruta por tu imagen
-    imageAlt: "Remote Education",
-    titleES: "Educación remota",
-    titleEN: "Remote Education",
-    descES:
-      "Como médica y educadora, ofrezco un espacio de aprendizaje virtual para estudiantes universitarios. Accede a materiales, clases en vivo y recursos especializados en medicina y ciencias de la salud.",
-    descEN:
-      "As a physician and educator, I offer a virtual learning space for university students. Access materials, live classes, and specialized resources in medicine and health sciences.",
-    ctaES: "Acceder",
-    ctaEN: "Access",
-  },
-  {
-    href: "/research",
-    imageSrc: "/researchsora.webp", // Cambia esta ruta por tu imagen
-    imageAlt: "Research",
-    titleES: "Investigación",
-    titleEN: "Research",
-    descES:
-      "Con raíces en salud pública, nutrida en medicina rural y natia. Desarrollada en UC Labs.",
-    descEN:
-      "With roots in public health, nourished in rural and native medicine perspective. Developed on UC Labs.",
-    ctaES: "Ver más",
-    ctaEN: "Learn more",
-  },
-  {
-    href: "/board",
-    imageSrc: "/boardzen2.png", // Cambia esta ruta por tu imagen
-    imageAlt: "Virtual Board",
-    titleES: "Pizarra Virtual",
-    titleEN: "Virtual Board",
-    descES: "Comparte ideas y experiencias en un espacio dedicado.",
-    descEN: "Share ideas & experiences in a dedicated space.",
-    ctaES: "Participar",
-    ctaEN: "Join in",
-  },
-];
+
 
     // Load language preference from cookies
     useEffect(() => {
@@ -112,8 +74,8 @@ const cards = [
                 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-gray-900 leading-tight tracking-tight"
               >
                 {language === "EN"
-                  ? "Medicine, Environment, and Human Health"
-                  : "Medicina, Medioambiente y Salud Humana"}
+                  ? "Neuroscience Doctoral Research"
+                  : "Investigación Doctoral en Neurociencia"}
               </motion.h1>
 
               {/* Subheadline: lighter, neutral gray-blue tone */}
@@ -122,8 +84,8 @@ const cards = [
                 className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-xl"
               >
                 {language === "EN"
-                  ? "Medical Doctor with clinical experience in underserved communities and a focus on environmental and neurological health. Based in Barcelona, collaborating in research and public health initiatives."
-                  : "Médica con experiencia clínica en comunidades desatendidas y enfoque en salud ambiental y neurológica. Basada en Barcelona, colaborando en investigación e iniciativas de salud pública."}
+                  ? "Dedicated space for developing doctoral theses in neuroscience. Access research tools, collaborate with experts, and advance your scientific work at an international level."
+                  : "Espacio dedicado al desarrollo de tesis doctorales en neurociencia. Accede a herramientas de investigación, colabora con expertos y avanza tu trabajo científico a nivel internacional."}
               </motion.p>
 
               {/* CTA: minimal, secondary, optional */}
@@ -154,7 +116,7 @@ const cards = [
               */}
               <div className="relative w-full h-full rounded-lg overflow-hidden">
                 <Image
-                  src="/Hero.png"
+                  src="/logo2026sinfondo.png"
                   alt="Dr. Candelaria Gherardi - Environmental Health Research"
                   fill
                   className="object-cover"
@@ -175,69 +137,105 @@ const cards = [
           </div>
         </section>
 
-        {/* Sección de servicios */}
-
-        <section className="max-w-7xl mx-auto px-4 py-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-700 mb-12 text-center">
-            {language === "ES" ? "Descubre más" : "Discover More"}
+        {/* Sección de Research - Diseño Apple-like con Glassmorphism */}
+        <section className="max-w-7xl mx-auto px-4 py-20">
+          <h2 className="text-3xl md:text-5xl font-semibold text-gray-800 mb-16 text-center">
+            {language === "ES" ? "Desarrollo de Tesis Doctoral" : "Doctoral Thesis Development"}
           </h2>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="max-w-5xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.2 } },
-            }}
+            variants={fadeIn}
           >
-            {cards.map((card, i) => {
-              // Clases específicas para cada imagen
-              let imageClasses = "w-full h-full object-cover";
-              
-              if (i === 0) { // Appointments - imagen más alejada
-                imageClasses += " transform translate-y-0";
-              } else if (i === 1) { // Research - imagen hacia arriba
-                imageClasses += " transform -translate-y-0";
-              }
-              // Board (i === 2) mantiene posición normal de imagen
-              
-              return (
-                <Link key={i} href={card.href} passHref>
-                  <motion.a
-                    className="block bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition"
-                    variants={{
-                      hidden: { opacity: 0 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-                    }}
-                  >
-                  <div className="relative h-48 bg-amber-50 rounded-t-2xl overflow-hidden">
-                    <Image
-                      src={card.imageSrc}
-                      alt={card.imageAlt}
-                      width={800}
-                      height={800}
-                      className={imageClasses}
-                    />
-                  </div>
-                  <div className="p-6 flex flex-col justify-between h-56">
-                    <div>
-                      <h3 className="text-xl font-medium text-green-500 mb-2">
-                        {language === "ES" ? card.titleES : card.titleEN}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        {language === "ES" ? card.descES : card.descEN}
-                      </p>
+            <Link href="/research" passHref>
+              <motion.div
+                className="group relative overflow-hidden rounded-3xl"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Glassmorphism Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/20 to-white/10 backdrop-blur-2xl" />
+                
+                {/* Border gradient effect */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/60 via-transparent to-white/20 p-[2px]">
+                  <div className="w-full h-full bg-gradient-to-br from-[#f0f9ff]/90 via-[#e0f2fe]/70 to-[#dbeafe]/60 rounded-3xl" />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 p-12 md:p-16">
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    
+                    {/* Left side - Image with frosted glass effect */}
+                    <div className="relative">
+                      <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-2xl">
+                        <Image
+                          src="/researchsora.webp"
+                          alt="Neuroscience Research"
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        {/* Image overlay for better text contrast */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      </div>
+                      
+                      {/* Floating badge */}
+                      <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-xl border border-white/40">
+                        <p className="text-sm font-semibold text-gray-800">
+                          {language === "ES" ? "Neurociencia" : "Neuroscience"}
+                        </p>
+                      </div>
                     </div>
-                    <span className="inline-block self-start text-green-500 font-semibold hover:underline">
-                      {language === "ES" ? card.ctaES : card.ctaEN} →
-                    </span>
+
+                    {/* Right side - Text content */}
+                    <div className="space-y-6">
+                      <h3 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+                        {language === "ES" ? "Investigación en Neurociencia" : "Neuroscience Research"}
+                      </h3>
+                      
+                      <p className="text-lg text-gray-700 leading-relaxed">
+                        {language === "ES"
+                          ? "Espacio dedicado al desarrollo de tesis doctorales en neurociencia. Accede a recursos, documentos y herramientas de investigación de nivel internacional."
+                          : "Dedicated space for developing doctoral theses in neuroscience. Access resources, documents, and international-level research tools."}
+                      </p>
+
+                      <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                        <div className="flex items-center gap-3 bg-white/50 backdrop-blur-sm px-5 py-3 rounded-xl">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                          <span className="text-sm font-medium text-gray-700">
+                            {language === "ES" ? "Documentos disponibles" : "Documents available"}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center gap-3 bg-white/50 backdrop-blur-sm px-5 py-3 rounded-xl">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                          <span className="text-sm font-medium text-gray-700">
+                            {language === "ES" ? "Asistente IA" : "AI Assistant"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* CTA Button with glass effect */}
+                      <div className="pt-4">
+                        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#5D8D7C]/90 to-[#4a7163]/90 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:gap-5">
+                          <span className="text-white font-semibold text-lg">
+                            {language === "ES" ? "Acceder al espacio" : "Access the space"}
+                          </span>
+                          <span className="text-white text-xl">→</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </motion.a>
-              </Link>
-              );
-            })}
+                </div>
+
+                {/* Subtle glow effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-purple-400/10 to-pink-400/10 blur-xl" />
+                </div>
+              </motion.div>
+            </Link>
           </motion.div>
         </section>
         <footer className="w-full bg-[#D5E8D4] py-8 text-center text-[#5D8D7C] border-t border-[#5D8D7C]">

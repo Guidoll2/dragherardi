@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { esMX } from "@clerk/localizations";
 import { Toaster } from 'sonner';
 import { Poppins } from "next/font/google";
+import SessionProvider from "@/components/SessionProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,8 +13,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Dra.Gherardi A",
-  description: "Enviromental Health",
+  title: "Neurociencia Doctoral - Dra.Gherardi A",
+  description: "Plataforma de desarrollo de tesis doctoral en neurociencia",
 };
 
 export default function RootLayout({
@@ -24,8 +25,10 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={esMX}>
       <html lang="en">
-   <body className={`${poppins.variable} antialiased`}>
-          {children}
+        <body className={`${poppins.variable} antialiased`}>
+          <SessionProvider>
+            {children}
+          </SessionProvider>
           <Toaster position="bottom-left" richColors />
         </body>
       </html>
