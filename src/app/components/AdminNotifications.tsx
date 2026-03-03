@@ -112,7 +112,7 @@ export default function AdminNotifications({ language }: AdminNotificationsProps
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden">
+        <div className="absolute right-0 top-full mt-2 w-[calc(100vw-2rem)] sm:w-80 max-w-sm bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden">
           {/* Header */}
           <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
             <h3 className="text-sm font-semibold text-gray-800">{t.title}</h3>

@@ -107,7 +107,7 @@ export default function PublicationViewer({
           >
             {/* Header fijo */}
             <div className="sticky top-0 z-10 bg-white/90 backdrop-blur-md border-b border-gray-200">
-              <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+              <div className="max-w-4xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
                 <button
                   onClick={onClose}
                   className="flex items-center gap-2 text-gray-600 hover:text-[#5D8D7C] transition-colors"
@@ -151,7 +151,7 @@ export default function PublicationViewer({
             </div>
 
             {/* Contenido */}
-            <article className="max-w-4xl mx-auto px-6 py-12">
+            <article className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
               {/* Estado del borrador */}
               {publication.status === "draft" && (
                 <div className="mb-6 px-4 py-3 bg-yellow-50 border border-yellow-200 rounded-xl flex items-center gap-2 text-yellow-700">
@@ -162,7 +162,7 @@ export default function PublicationViewer({
               )}
 
               {/* Título */}
-              <h1 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 {publication.title}
               </h1>
 

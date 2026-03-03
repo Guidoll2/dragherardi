@@ -339,17 +339,17 @@ export default function ResearchPage() {
       <Header language={language} onLanguageChange={handleLanguageChange} />
 
       {/* Header con autenticación */}
-      <section className="max-w-7xl mx-auto px-8 pt-8 mt-12 mb-8">
-        <div className="flex justify-between items-start mb-6">
-          <div>
-            <h1 className="text-4xl font-bold text-[#5D8D7C] mb-2">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-6 sm:pt-8 mt-8 sm:mt-12 mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#5D8D7C] mb-2">
               {texts.fullName[language]}
             </h1>
-            <p className="text-lg text-gray-600 mb-4">{texts.subtitle[language]}</p>
+            <p className="text-base sm:text-lg text-gray-600 mb-4">{texts.subtitle[language]}</p>
           </div>
 
           {/* Auth Section */}
-          <div className="flex flex-col items-end gap-2">
+          <div className="flex flex-col items-start sm:items-end gap-2">
             {status === "loading" ? (
               <div className="animate-pulse bg-gray-200 h-10 w-32 rounded-xl" />
             ) : session ? (
@@ -388,7 +388,7 @@ export default function ResearchPage() {
         </div>
 
         {/* Descripción de la plataforma */}
-        <p className="text-lg text-gray-700 leading-relaxed mb-8">
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-6 sm:mb-8">
           {language === "ES"
             ? "Plataforma colaborativa para la creación y gestión de documentos científicos en neurociencia. Accede a publicaciones, recursos de investigación y un asistente de IA especializado en redacción científica."
             : "Collaborative platform for creating and managing scientific documents in neuroscience. Access publications, research resources, and an AI assistant specialized in scientific writing."}
@@ -396,7 +396,7 @@ export default function ResearchPage() {
 
         {/* Estadísticas rápidas */}
         {isApproved && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 mb-6 sm:mb-8">
             <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-[#5D8D7C]/10 rounded-lg">
@@ -455,9 +455,9 @@ export default function ResearchPage() {
 
       {/* Sección de Publicaciones */}
       {isApproved && (
-        <section id="publicaciones" className="max-w-7xl mx-auto px-8 mb-16">
+        <section id="publicaciones" className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-12 sm:mb-16">
           {/* Barra de acciones */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
             {/* Búsqueda */}
             <div className="flex-1 relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -479,16 +479,16 @@ export default function ResearchPage() {
             </div>
 
             {/* Botones de acción */}
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center gap-2 px-4 py-3 rounded-xl border transition-colors ${
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-colors text-sm sm:text-base ${
                   showFilters
                     ? "bg-[#5D8D7C] text-white border-[#5D8D7C]"
                     : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
                 }`}
               >
-                <Filter className="w-5 h-5" />
+                <Filter className="w-4 h-4 sm:w-5 sm:h-5" />
                 {texts.filters[language]}
               </button>
 
@@ -513,9 +513,9 @@ export default function ResearchPage() {
 
               <button
                 onClick={() => router.push("/research/editor/new")}
-                className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#5D8D7C] to-[#4a7163] text-white rounded-xl shadow-lg hover:shadow-xl transition-all"
+                className="flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-[#5D8D7C] to-[#4a7163] text-white rounded-xl shadow-lg hover:shadow-xl transition-all text-sm sm:text-base"
               >
-                <Plus className="w-5 h-5" />
+                <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                 {language === "ES" ? "Nuevo Paper" : "New Paper"}
               </button>
               <button
@@ -523,7 +523,7 @@ export default function ResearchPage() {
                   setEditingPublication(null);
                   setShowPublicationModal(true);
                 }}
-                className="flex items-center gap-2 px-4 py-3 bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm sm:text-base"
               >
                 <FileText className="w-4 h-4" />
                 {language === "ES" ? "Nota rápida" : "Quick note"}
@@ -691,12 +691,12 @@ export default function ResearchPage() {
 
       {/* Sección de Chat IA */}
       {isApproved && (
-        <section className="max-w-7xl mx-auto px-8 py-16">
-          <div className="bg-gradient-to-br from-white/40 via-white/20 to-white/10 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl border border-white/40">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <Sparkles className="w-8 h-8 text-[#A08C6A]" />
-                <h2 className="text-3xl font-semibold text-gray-900">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-16">
+          <div className="bg-gradient-to-br from-white/40 via-white/20 to-white/10 backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/40">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-[#A08C6A]" />
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900">
                   {texts.chatTitle[language]}
                 </h2>
               </div>
@@ -769,20 +769,20 @@ export default function ResearchPage() {
                     </div>
                   )}
 
-                  <div className="flex gap-3">
+                  <div className="flex gap-2 sm:gap-3">
                     <input
                       type="text"
                       value={inputMessage}
                       onChange={(e) => setInputMessage(e.target.value)}
                       onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                       placeholder={texts.chatPlaceholder[language]}
-                      className="flex-1 px-6 py-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#5D8D7C] text-gray-800"
+                      className="flex-1 px-3 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#5D8D7C] text-gray-800 text-sm sm:text-base"
                       disabled={isLoading}
                     />
                     <button
                       onClick={handleSendMessage}
                       disabled={isLoading || !inputMessage.trim()}
-                      className="bg-gradient-to-r from-[#5D8D7C] to-[#4a7163] text-white px-6 py-4 rounded-2xl hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-gradient-to-r from-[#5D8D7C] to-[#4a7163] text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Send className="w-5 h-5" />
                     </button>
@@ -796,10 +796,10 @@ export default function ResearchPage() {
 
       {/* Prompt para usuarios no autenticados */}
       {!session && (
-        <section className="max-w-7xl mx-auto px-8 py-16">
-          <div className="bg-blue-50/50 backdrop-blur-sm rounded-3xl p-8 text-center">
-            <Lock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-16">
+          <div className="bg-blue-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-center">
+            <Lock className="w-8 h-8 sm:w-12 sm:h-12 text-gray-400 mx-auto mb-3 sm:mb-4" />
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mb-3">
               {texts.loginRequired[language]}
             </h3>
             <Link href="/sign-in">
@@ -812,12 +812,12 @@ export default function ResearchPage() {
       )}
 
       {/* Footer con Google Scholar */}
-      <section className="max-w-7xl mx-auto px-8 py-16 text-center">
-        <div className="flex flex-row justify-center gap-4 items-center">
-          <p className="text-2xl text-gray-700 leading-relaxed">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-16 text-center">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 items-center">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed">
             {language === "ES" ? "Perfil académico completo" : "Complete academic profile"}
           </p>
-          <SiGooglescholar size={48} className="text-[#5D8D7C]" />
+          <SiGooglescholar size={36} className="text-[#5D8D7C] sm:w-12 sm:h-12" />
         </div>
       </section>
 

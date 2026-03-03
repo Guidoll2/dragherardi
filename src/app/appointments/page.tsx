@@ -40,25 +40,25 @@ function Turnos() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 container mx-auto px-4 py-12">
+      <div className="relative z-10 container mx-auto px-3 sm:px-4 py-6 sm:py-12">
         {/* Hero section */}
-        <div className="text-center mb-16 max-w-4xl mx-auto">
+        <div className="text-center mb-8 sm:mb-16 max-w-4xl mx-auto">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/20 text-sm font-medium text-indigo-700 mb-6">
             <div className="w-2 h-2 bg-indigo-500 rounded-full mr-2 animate-pulse"></div>
             {languageFromCookie === "ES" ? "Disponible para reuniones" : "Available for meetings"}
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-light text-gray-800 tracking-tight leading-tight mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-light text-gray-800 tracking-tight leading-tight mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
             {languageFromCookie === "ES" ? "Agendemos un Espacio para Conversar" : "Let's Find Time to Connect"}
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 mb-6 font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 font-light leading-relaxed max-w-3xl mx-auto">
             {languageFromCookie === "ES"
               ? "Te invito a programar una reunión virtual para compartir ideas, responder preguntas o colaborar."
               : "I invite you to schedule a virtual meeting to share ideas, answer questions, or collaborate."}
           </p>
 
-          <p className="text-lg text-gray-500 italic max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-500 italic max-w-2xl mx-auto">
             {languageFromCookie === "ES"
               ? "Por favor, selecciona un día y horario que te sea conveniente."
               : "Please select a day and time that works for you."}

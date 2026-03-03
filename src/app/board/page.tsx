@@ -172,20 +172,20 @@ export default function PostsPage() {
   }}
 >
     {/* Overlay oscuro para resaltar el board */}
-    <div className="absolute z-[100] bg-black/40" />
+    <div className="absolute inset-0 z-0 bg-black/40" />
    <Header language={language} onLanguageChange={handleLanguageChange} />
 
     {/* Botón de idioma */}
 
 <div
   className="
-    max-w-3xl mx-auto mt-10 p-6 min-h-screen relative z-10
-    rounded-[32px] shadow-[0_0_60px_rgba(0,0,0,0.7)]
-    border-[12px] border-[#bfa76a]  // Marco madera
+    max-w-3xl mx-auto mt-4 sm:mt-10 p-3 sm:p-6 min-h-screen relative z-10
+    rounded-2xl sm:rounded-[32px] shadow-[0_0_60px_rgba(0,0,0,0.7)]
+    border-4 sm:border-[8px] md:border-[12px] border-[#bfa76a]
     bg-[#20402b] md:bg-[url('/chalkboard-texture.png'),#20402b]
     bg-blend-multiply
     flex flex-col
-    md:scale-105
+    mx-2 sm:mx-auto
     "
   style={{
     boxShadow: "0 8px 40px 8px rgba(0,0,0,0.7)",
@@ -194,7 +194,7 @@ export default function PostsPage() {
     backgroundRepeat: "repeat",
   }}
 >
-  <h1 className="text-4xl font-handwriting text-white text-center mb-8 drop-shadow-[0_2px_0_rgba(0,0,0,0.4)]">
+  <h1 className="text-2xl sm:text-3xl md:text-4xl font-handwriting text-white text-center mb-4 sm:mb-8 drop-shadow-[0_2px_0_rgba(0,0,0,0.4)]">
   {language === "EN"
     ? "🧠 Share your ideas or thoughts"
     : "🧠 Comparte tus ideas o pensamientos"}
@@ -276,7 +276,7 @@ export default function PostsPage() {
                     })}
                   </span>
                   {user?.id === post.userId && (
-                    <div className="absolute bottom-4 right-2 flex gap-2">
+                    <div className="flex gap-2 mt-3 sm:mt-0 sm:absolute sm:bottom-4 sm:right-2">
                       <button
                         className="text-xs bg-yellow-300 px-2 py-1 rounded text-black"
                         onClick={() => {

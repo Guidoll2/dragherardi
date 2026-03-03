@@ -93,13 +93,13 @@ export default function StudentDashboard() {
     <div className="min-h-screen bg-[#D5E8D4]">
       <Header language={language} onLanguageChange={() => setLanguage(language === "ES" ? "EN" : "ES")} />
 
-      <main className="max-w-7xl mx-auto px-4 py-8 mt-20">
+      <main className="max-w-7xl mx-auto px-4 py-6 sm:py-8 mt-4">
         {/* Banner de Admin viendo como estudiante */}
         {isAdmin && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl shadow-lg p-4 mb-6 flex items-center justify-between"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl shadow-lg p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
           >
             <div className="flex items-center gap-3">
               <Shield className="w-6 h-6" />
@@ -112,7 +112,7 @@ export default function StudentDashboard() {
             </div>
             <button
               onClick={() => router.push("/education/admin")}
-              className="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition font-medium"
+              className="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition font-medium text-sm sm:text-base w-full sm:w-auto text-center"
             >
               Volver al Dashboard Admin
             </button>
@@ -120,11 +120,11 @@ export default function StudentDashboard() {
         )}
 
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#5D8D7C] mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#5D8D7C] mb-2">
             {language === "ES" ? "Mi Espacio de Aprendizaje" : "My Learning Space"}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600">
             {language === "ES" 
               ? "Explora aulas virtuales y accede a contenido educativo de calidad"
               : "Explore virtual classrooms and access quality educational content"}
@@ -132,7 +132,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* Estadísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <motion.div
             whileHover={{ scale: 1.02 }}
             className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500"
@@ -208,19 +208,19 @@ export default function StudentDashboard() {
         )}
 
         {/* Explorar Aulas Disponibles */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#5D8D7C]">
+        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#5D8D7C]">
               {language === "ES" ? "Explorar Aulas Disponibles" : "Explore Available Classrooms"}
             </h2>
-            <div className="relative">
+            <div className="relative w-full sm:w-auto">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={language === "ES" ? "Buscar aulas..." : "Search classrooms..."}
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full sm:w-auto pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
           </div>

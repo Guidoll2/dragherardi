@@ -104,14 +104,14 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-[#D5E8D4]">
       <Header language={language} onLanguageChange={() => setLanguage(language === "ES" ? "EN" : "ES")} />
       
-      <main className="max-w-7xl mx-auto px-4 py-8 mt-20">
+      <main className="max-w-7xl mx-auto px-4 py-6 sm:py-8 mt-4">
         {/* Header del Dashboard */}
-        <div className="mb-8 flex items-start justify-between">
-          <div className="flex-1">
-            <h1 className="text-4xl font-bold text-[#5D8D7C] mb-2">
+        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#5D8D7C] mb-2">
               Dashboard de Administración
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Gestiona tus aulas virtuales, contenido educativo y sesiones en vivo
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function AdminDashboard() {
           {/* Botón para ver como estudiante */}
           <button
             onClick={() => router.push("/education/student")}
-            className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition shadow-md"
+            className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition shadow-md text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
           >
             <Eye className="w-5 h-5" />
             Ver como Estudiante
@@ -127,68 +127,68 @@ export default function AdminDashboard() {
         </div>
 
         {/* Estadísticas rápidas */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500"
+            className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-green-500"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Aulas Activas</p>
-                <p className="text-3xl font-bold text-[#5D8D7C]">
+                <p className="text-gray-500 text-xs sm:text-sm">Aulas Activas</p>
+                <p className="text-2xl sm:text-3xl font-bold text-[#5D8D7C]">
                   {classrooms.filter(c => c.isActive).length}
                 </p>
               </div>
-              <BookOpen className="w-12 h-12 text-green-500 opacity-80" />
+              <BookOpen className="w-8 h-8 sm:w-12 sm:h-12 text-green-500 opacity-80" />
             </div>
           </motion.div>
 
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500"
+            className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-blue-500"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Total Estudiantes</p>
-                <p className="text-3xl font-bold text-[#5D8D7C]">
+                <p className="text-gray-500 text-xs sm:text-sm">Total Estudiantes</p>
+                <p className="text-2xl sm:text-3xl font-bold text-[#5D8D7C]">
                   {classrooms.reduce((acc, c) => acc + c.students.length, 0)}
                 </p>
               </div>
-              <Users className="w-12 h-12 text-blue-500 opacity-80" />
+              <Users className="w-8 h-8 sm:w-12 sm:h-12 text-blue-500 opacity-80" />
             </div>
           </motion.div>
 
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500"
+            className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-purple-500"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Materiales</p>
-                <p className="text-3xl font-bold text-[#5D8D7C]">-</p>
+                <p className="text-gray-500 text-xs sm:text-sm">Materiales</p>
+                <p className="text-2xl sm:text-3xl font-bold text-[#5D8D7C]">-</p>
               </div>
-              <FileText className="w-12 h-12 text-purple-500 opacity-80" />
+              <FileText className="w-8 h-8 sm:w-12 sm:h-12 text-purple-500 opacity-80" />
             </div>
           </motion.div>
 
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500"
+            className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-red-500"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm">Sesiones</p>
-                <p className="text-3xl font-bold text-[#5D8D7C]">-</p>
+                <p className="text-gray-500 text-xs sm:text-sm">Sesiones</p>
+                <p className="text-2xl sm:text-3xl font-bold text-[#5D8D7C]">-</p>
               </div>
-              <Video className="w-12 h-12 text-red-500 opacity-80" />
+              <Video className="w-8 h-8 sm:w-12 sm:h-12 text-red-500 opacity-80" />
             </div>
           </motion.div>
         </div>
 
         {/* Aulas Virtuales */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#5D8D7C]">Mis Aulas Virtuales</h2>
+        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#5D8D7C]">Mis Aulas Virtuales</h2>
             <button
               onClick={() => setShowCreateClassroom(!showCreateClassroom)}
               className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
@@ -296,7 +296,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Acciones rápidas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           <motion.div
             whileHover={{ scale: 1.03 }}
             className="bg-white rounded-xl shadow-lg p-6 cursor-pointer"

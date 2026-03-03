@@ -188,7 +188,7 @@ export default function PublicationModal({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col"
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col mx-2 sm:mx-4"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
@@ -206,7 +206,7 @@ export default function PublicationModal({
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
               {/* Título */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -401,7 +401,7 @@ export default function PublicationModal({
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 bg-gray-50">
               <button
                 onClick={() => handleSave("draft")}
                 disabled={isLoading || !formData.title || !formData.summary || !formData.content}

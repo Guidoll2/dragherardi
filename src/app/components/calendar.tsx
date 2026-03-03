@@ -234,24 +234,24 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
   }, [isAdmin, allPossibleTimeSlots, selectedDayAppointments])
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-6">
+    <div className="w-full max-w-7xl mx-auto p-2 sm:p-4 md:p-6">
       {/* Glass container */}
-      <div className="backdrop-blur-xl bg-white/30 border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
+      <div className="backdrop-blur-xl bg-white/30 border border-white/20 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden">
         <div className="flex flex-col lg:flex-row">
           {/* Calendar Section */}
-          <div className="flex-1 p-8 border-r border-white/10">
+          <div className="flex-1 p-3 sm:p-5 md:p-8 border-b lg:border-b-0 lg:border-r border-white/10">
             {/* Calendar Header */}
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex justify-between items-center mb-4 sm:mb-6 md:mb-8">
               <button
                 aria-label="Previous month"
                 onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-                className="group p-3 rounded-2xl bg-white/40 backdrop-blur-sm border border-white/20 text-gray-600 shadow-lg hover:bg-white/60 hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-105"
+                className="group p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/40 backdrop-blur-sm border border-white/20 text-gray-600 shadow-lg hover:bg-white/60 hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-105"
               >
-                <FaChevronLeft className="h-5 w-5 group-hover:transform group-hover:-translate-x-0.5 transition-transform" />
+                <FaChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 group-hover:transform group-hover:-translate-x-0.5 transition-transform" />
               </button>
 
               <div className="text-center">
-                <h2 className="text-3xl font-bold text-gray-600">
+                <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-600">
                   {format(currentMonth, "MMMM yyyy", { locale: dateFnsLocale }).replace(/^\w/, (c) => c.toUpperCase())}
                 </h2>
               </div>
@@ -259,25 +259,25 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
               <button
                 aria-label="Next month"
                 onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-                className="group p-3 rounded-2xl bg-white/40 backdrop-blur-sm border border-white/20 text-indigo-700 shadow-lg hover:bg-white/60 hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-105"
+                className="group p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/40 backdrop-blur-sm border border-white/20 text-indigo-700 shadow-lg hover:bg-white/60 hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-105"
               >
-                <FaChevronRight className="h-5 w-5 group-hover:transform group-hover:translate-x-0.5 transition-transform" />
+                <FaChevronRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:transform group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>
 
             {/* Weekday headers */}
-            <div className="grid grid-cols-7 gap-2 mb-4">
+            <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-2 sm:mb-4">
               {weekDays.map((day) => (
-                <div key={day} className="text-center text-sm font-semibold text-indigo-700/80 py-2">
+                <div key={day} className="text-center text-xs sm:text-sm font-semibold text-indigo-700/80 py-1 sm:py-2">
                   {day}
                 </div>
               ))}
             </div>
 
             {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-2">
+            <div className="grid grid-cols-7 gap-1 sm:gap-2">
               {Array.from({ length: startPadding }).map((_, index) => (
-                <div key={`padding-${index}`} className="h-14 w-full"></div>
+                <div key={`padding-${index}`} className="h-10 sm:h-14 w-full"></div>
               ))}
 
               {daysInMonth.map((day) => {
@@ -293,7 +293,7 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
                     key={day.toISOString()}
                     onClick={() => handleDayClick(day)}
                     disabled={!isAdmin && (isPastDay || !hasSlots)}
-                    className={`relative flex flex-col items-center justify-center h-14 w-full rounded-xl transition-all duration-300 group
+                    className={`relative flex flex-col items-center justify-center h-10 sm:h-14 w-full rounded-lg sm:rounded-xl transition-all duration-300 group
                       ${
                         isDaySelected
                           ? "bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-xl transform scale-105 border-2 border-white/30"
@@ -325,13 +325,13 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
           </div>
 
           {/* Time Slots Section */}
-          <div className="flex-1 p-8 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm">
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 rounded-xl bg-indigo-500/20 backdrop-blur-sm">
-                  <FaClock className="h-5 w-5 text-indigo-600" />
+          <div className="flex-1 p-3 sm:p-5 md:p-8 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm">
+            <div className="flex items-center justify-center mb-4 sm:mb-6 md:mb-8">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-indigo-500/20 backdrop-blur-sm">
+                  <FaClock className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800">
+                <h3 className="text-base sm:text-lg md:text-2xl font-bold text-gray-800 text-center">
                   {selectedDay
                     ? format(selectedDay, "PPPP", { locale: dateFnsLocale }).replace(/^\w/, (c) => c.toUpperCase())
                     : t("calendar.select_date")}
@@ -373,7 +373,7 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
                           ${isAdmin && isSelectedForEnable && "bg-indigo-200/60 !text-indigo-800 ring-2 ring-indigo-500/50"}
                         `}
                       >
-                        <div className="flex items-center justify-between p-4">
+                        <div className="flex items-center justify-between p-3 sm:p-4">
                           <div className="flex items-center space-x-3">
                             <div
                               className={`p-2 rounded-xl backdrop-blur-sm
@@ -388,7 +388,7 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
                             >
                               <FaClock className="h-4 w-4" />
                             </div>
-                            <span className="text-lg font-semibold">{slotTime}</span>
+                            <span className="text-sm sm:text-lg font-semibold">{slotTime}</span>
                           </div>
 
                           {isAdmin ? (
@@ -405,7 +405,7 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
                             <button
                               onClick={() => handleReserveAppointment(slotTime)}
                               disabled={!isBookable}
-                              className={`px-6 py-2 rounded-xl font-semibold transition-all duration-300 backdrop-blur-sm border
+                              className={`px-3 sm:px-6 py-1.5 sm:py-2 rounded-xl font-semibold transition-all duration-300 backdrop-blur-sm border text-sm sm:text-base
                                 ${
                                   isBookable
                                     ? "bg-indigo-500/80 hover:bg-indigo-600/80 text-white border-indigo-400/50 hover:shadow-lg hover:transform hover:scale-105"
@@ -455,7 +455,7 @@ export default function CalendarComponent({ language }: CalendarComponentProps) 
               <button
                 onClick={handleEnableSlots}
                 disabled={selectedSlotsToEnable.length === 0 || isLoading}
-                className="mt-8 w-full p-4 rounded-2xl text-lg font-semibold bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center backdrop-blur-sm border border-white/20 hover:transform hover:scale-[1.02]"
+                className="mt-4 sm:mt-8 w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl text-base sm:text-lg font-semibold bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center backdrop-blur-sm border border-white/20 hover:transform hover:scale-[1.02]"
               >
                 {isLoading ? (
                   <div className="flex items-center space-x-3">

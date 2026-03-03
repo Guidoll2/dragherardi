@@ -108,7 +108,7 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
       {/* Menú Desplegable para Móviles */}
       <div
         id="mobile-menu"
-        className={`md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4 transition-transform duration-300 ease-in-out transform ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4 transition-transform duration-300 ease-in-out transform z-50 ${
           isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
